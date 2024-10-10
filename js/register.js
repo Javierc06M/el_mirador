@@ -50,19 +50,3 @@ const signUpButton = document.getElementById('signUp');
                 modal.style.display = "none";
             }
         }
-
-        document.getElementById('signUpForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            // Aquí iría la lógica de validación y envío del formulario
-            // Por ahora, simplemente mostraremos un mensaje de error de ejemplo
-            showError("Hubo un error al procesar tu registro. Por favor, inténtalo de nuevo.");
-        });
-
-        document.getElementById('signInForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            // Aquí iría la lógica de inicio de sesión
-            // Por ahora, simplemente mostraremos un mensaje de error de ejemplo
-            showError("Credenciales incorrectas. Por favor, verifica tu email y contraseña.");
-        });
-
-        

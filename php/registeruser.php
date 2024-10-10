@@ -1,90 +1,74 @@
-<?php 
-include 'conexion.php';
+<?php
+// registeruser.php
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    // Conexión a la base de datos
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    $dbname = "el_mirador"; // Cambiar por el nombre de la base de datos
 
-// Función para verificar si un valor ya existe en la base de datos
-function valorExiste($con, $tabla, $columna, $valor) {
-    $sql = "SELECT COUNT(*) as count FROM $tabla WHERE $columna = ?";
-    $stmt = mysqli_prepare($con, $sql);
+    // Crear conexión
+    $conn = new mysqli($servername, $username, $password, $dbname);
+
+    // Verificar conexión
+    if ($conn->connect_error) {
+        die("Error de conexión: " . $conn->connect_error);
+    }
+
+    // Obtener los datos del formulario
+    $nombre = $_POST['nombre'];
+    $apellido = $_POST['apellido'];
+    $email = $_POST['email'];
+    $telefono = $_POST['telefono'];
+    $usuario = $_POST['user'];
+    $contrasena = password_hash($_POST['password'], PASSWORD_DEFAULT); // Encriptar la contraseña
+
+    // Verificar si el correo, teléfono o nombre de usuario ya están registrados
+    $checkSql = "SELECT cod_usuario FROM usuarios WHERE correo = ? OR telefono = ? OR usuario = ?";
+    $stmt = $conn->prepare($checkSql);
+
     if ($stmt === false) {
-        die("Error en la preparación de la consulta: " . mysqli_error($con));
-    }
-    mysqli_stmt_bind_param($stmt, "s", $valor);
-    mysqli_stmt_execute($stmt);
-    $result = mysqli_stmt_get_result($stmt);
-    $row = mysqli_fetch_assoc($result);
-    mysqli_stmt_close($stmt);
-    return $row['count'] > 0;
-}
-
-// Verificar si se ha enviado el formulario
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Recoger los datos del formulario
-    $nombre = $_POST['nombre'] ?? '';
-    $apellido = $_POST['apellido'] ?? '';
-    $email = $_POST['email'] ?? '';
-    $telefono = $_POST['telefono'] ?? '';
-    $usuario = $_POST['user'] ?? '';
-    $password = $_POST['password'] ?? '';
-
-    $errores = [];
-
-    // Validaciones
-    if (empty($nombre) || empty($apellido) || empty($email) || empty($telefono) || empty($usuario) || empty($password)) {
-        $errores[] = "Por favor, complete todos los campos.";
+        die("Error al preparar la consulta: " . $conn->error);
     }
 
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $errores[] = "Por favor, ingrese un email válido.";
+    $stmt->bind_param("sss", $email, $telefono, $usuario);
+    $stmt->execute();
+    $stmt->store_result();
+
+    // Comprobar si ya existe un registro con el correo, teléfono o usuario ingresado
+    if ($stmt->num_rows > 0) {
+        // Redirigir con mensaje de error
+        header("Location: ../login-register.php?error=El correo, teléfono o nombre de usuario ya están registrados");
+        exit();
     }
 
-    if (valorExiste($con, 'usuarios', 'correo', $email)) {
-        $errores[] = "El email ya está registrado.";
+    // Cerrar la consulta previa
+    $stmt->close();
+
+    // Preparar consulta SQL para insertar el nuevo usuario de forma segura
+    $insertSql = "INSERT INTO usuarios (nombre, apellido, correo, telefono, usuario, contraseña)
+                  VALUES (?, ?, ?, ?, ?, ?)";
+
+    $stmt = $conn->prepare($insertSql);
+
+    if ($stmt === false) {
+        die("Error al preparar la consulta de inserción: " . $conn->error);
     }
 
-    if (valorExiste($con, 'usuarios', 'usuario', $usuario)) {
-        $errores[] = "El nombre de usuario ya está en uso.";
-    }
+    $stmt->bind_param("ssssss", $nombre, $apellido, $email, $telefono, $usuario, $contrasena);
 
-    if (valorExiste($con, 'usuarios', 'telefono', $telefono)) {
-        $errores[] = "El número de teléfono ya está registrado.";
-    }
-
-    if (empty($errores)) {
-        // Hash de la contraseña
-        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-
-        // Preparar la consulta SQL
-        $sql = "INSERT INTO usuarios (nombre, apellido, correo, telefono, usuario, contraseña) VALUES (?, ?, ?, ?, ?, ?)";
-
-        // Preparar la declaración
-        $stmt = mysqli_prepare($con, $sql);
-
-        if ($stmt === false) {
-            die("Error en la preparación de la consulta: " . mysqli_error($con));
-        }
-
-        // Vincular parámetros
-        if (!mysqli_stmt_bind_param($stmt, "ssssss", $nombre, $apellido, $email, $telefono, $usuario, $hashed_password)) {
-            die("Error al vincular parámetros: " . mysqli_stmt_error($stmt));
-        }
-
-        // Ejecutar la consulta
-        if (mysqli_stmt_execute($stmt)) {
-            echo "Registro exitoso. ¡Bienvenido!";
-        } else {
-            echo "Error al registrar: " . mysqli_stmt_error($stmt);
-        }
-
-        // Cerrar la declaración
-        mysqli_stmt_close($stmt);
+    if ($stmt->execute()) {
+        // Registro exitoso, enviar redirección con mensaje de éxito
+        header("Location: ../login-register.php?registered=true&message=Registro%20exitoso");
+        exit();
     } else {
-        // Mostrar errores
-        foreach ($errores as $error) {
-            echo $error . "<br>";
-        }
+        // Redirigir con mensaje de error
+        header("Location: ../login-register.php?error=Error al registrar usuario: " . $stmt->error);
+        exit();
     }
-}
 
-// Cerrar la conexión
-mysqli_close($con);
+    // Cerrar la declaración y la conexión
+    $stmt->close();
+    $conn->close();
+}
 ?>

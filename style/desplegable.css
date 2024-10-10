@@ -1,0 +1,117 @@
+.nav-item.user-item {
+    position: relative;
+    font-family: 'Arial', sans-serif;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    background-color: #f0f0f0;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+
+.user-info:hover {
+    background-color: #e0e0e0;
+}
+
+.user-info i {
+    font-size: 1.25rem;
+    color: #333;
+}
+
+.username {
+    font-weight: 500;
+    color: #333;
+}
+
+.dropdown-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.25rem;
+    display: flex;
+    align-items: center;
+    transition: transform 0.3s ease;
+}
+
+.dropdown-toggle:focus {
+    outline: none;
+}
+
+.dropdown-toggle svg {
+    width: 1rem;
+    height: 1rem;
+    transition: transform 0.3s ease;
+}
+
+.dropdown-content {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: #ffffff;
+    min-width: 160px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    border-radius: 0.25rem;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: #333;
+    padding: 0.75rem 1rem;
+    text-decoration: none;
+    display: block;
+    transition: background-color 0.2s ease;
+}
+
+.dropdown-content a:hover {
+    background-color: #f5f5f5;
+}
+
+/* Show dropdown on hover */
+.nav-item.user-item:hover .dropdown-content {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.nav-item.user-item:hover .dropdown-toggle svg {
+    transform: rotate(180deg);
+}
+
+/* Accessibility */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .nav-item.user-item {
+        align-items: flex-end;
+    }
+
+    .user-info {
+        flex-direction: row;
+        justify-content: flex-end;
+        width: 100%;
+    }
+
+    .dropdown-content {
+        width: 100%;
+    }
+}

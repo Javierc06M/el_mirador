@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
     <link rel="stylesheet" href="style/index.css">
+    <link rel="stylesheet" href="style/desplegable.css">
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -22,21 +23,47 @@
     </div>
 
     <header>
-        <div class="container">
-            <div class="logo">
-                <img src="" alt="Hospedaje El Mirador" class="logo-img">
-            </div>
+    <div class="container">
+        <div class="logo">
+            <img src="" alt="Hospedaje El Mirador" class="logo-img">
+        </div>
+        <?php session_start(); // Asegúrate de iniciar la sesión ?>
+        
+        <?php if (isset($_SESSION['usuario'])): ?>
             <nav class="nav">
                 <a href="#" class="nav-item"><i class="fas fa-heart"></i> <span>Favoritos</span></a>
                 <a href="#" class="nav-item"><i class="fas fa-globe"></i> <span>ES · S/.</span></a>
-                <a href="register.php" class="nav-item"><i class="fas fa-user"></i> <span>Iniciar sesión</span></a>
+                
+                <div class="nav-item user-item">
+                    <div class="user-info">
+                        <i class="fas fa-user-circle"></i>
+                        <span class="username"><?php echo htmlspecialchars($_SESSION['usuario']); ?></span>
+                        <button class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+                            <span class="sr-only">Toggle user menu</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                        </button>
+                    </div>
+                    <div class="dropdown-content">
+                        <a href="perfil.php">Perfil</a>
+                        <a href="php/logout.php">Cerrar sesión</a>
+                    </div>
+                </div>
+
                 <button class="menu-toggle">
                     <i class="fas fa-bars"></i>
                     <span>Menú</span>
                 </button>
             </nav>
-        </div>
-    </header>
+        <?php else: ?>
+            <nav class="nav">
+                <a href="#" class="nav-item"><i class="fas fa-heart"></i> <span>Favoritos</span></a>
+                <a href="#" class="nav-item"><i class="fas fa-globe"></i> <span>ES · S/.</span></a>
+                <a href="login-register.php" class="nav-item"><i class="fas fa-user"></i> <span>Iniciar sesión</span></a>
+            </nav>
+        <?php endif; ?>
+    </div>
+</header>
+
 
     <section class="hero">
         <h1>La Mejor Estancia Siempre A Tu Disposicion</h1>
@@ -189,6 +216,7 @@
     
         <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
         <script src="js/index.js"></script>
+        <script src="js/desplegable-user.js"></script>
     </main>
 
 </body>

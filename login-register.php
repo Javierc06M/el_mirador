@@ -8,6 +8,19 @@
 </head>
 <body>
     <div class="container" id="container">
+        <!-- Mostrar mensaje de éxito o error -->
+        <?php if (isset($_GET['registered']) && $_GET['registered'] == 'true'): ?>
+            <div class="success-message" id="successMessage">
+                <?php echo htmlspecialchars($_GET['message']); ?>
+            </div>
+        <?php endif; ?>
+        
+        <?php if (isset($_GET['error'])): ?>
+            <div class="error-message" id="errorMessage">
+                <?php echo htmlspecialchars($_GET['error']); ?>
+            </div>
+        <?php endif; ?>
+
         <div class="form-container sign-up-container">
             <form id="signUpForm" action="php/registeruser.php" method="POST">
                 <h1>Crear Cuenta</h1>
@@ -27,12 +40,13 @@
                 </div>
             </form>
         </div>
+        
         <div class="form-container sign-in-container">
-            <form id="signInForm">
+            <form id="signInForm" action="php/loginuser.php" method="POST">
                 <h1>Iniciar Sesión</h1>
-                <input type="email" placeholder="Email" id="signInEmail" required />
+                <input type="email" name="correo" placeholder="Email" id="signInEmail" required />
                 <div class="input-group">
-                    <input type="password" placeholder="Contraseña" id="signInPassword" required />
+                    <input type="password" name="contraseña" placeholder="Contraseña" id="signInPassword" required />
                     <span class="toggle-password" onclick="togglePassword('signInPassword', this)">👁️</span>
                 </div>
                 <a href="#">¿Olvidaste tu contraseña?</a>
@@ -43,6 +57,7 @@
                 </div>
             </form>
         </div>
+        
         <div class="overlay-container">
             <div class="overlay">
                 <div class="overlay-panel overlay-left">
@@ -60,5 +75,59 @@
     </div>
 
     <script src="js/register.js"></script>
+
+    <style>
+        .success-message {
+            background-color: #d4edda;
+            color: #155724;
+            padding: 10px;
+            margin: 15px 0;
+            border: 1px solid #c3e6cb;
+            border-radius: 5px;
+            position: absolute; /* Para superponer */
+            top: 20px; /* Ajustar según sea necesario */
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000; /* Asegurar que esté encima de otros elementos */
+            animation: fade-in-out 3s; /* Animación */
+        }
+
+        .error-message {
+            background-color: #f8d7da;
+            color: #721c24;
+            padding: 10px;
+            margin: 15px 0;
+            border: 1px solid #f5c6cb;
+            border-radius: 5px;
+            position: absolute; /* Para superponer */
+            top: 70px; /* Ajustar según sea necesario */
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000; /* Asegurar que esté encima de otros elementos */
+        }
+
+        @keyframes fade-in-out {
+            0% { opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+    </style>
+
+    <script>
+        // Función para ocultar el mensaje de éxito o error después de un tiempo
+        function hideMessage(id) {
+            const messageElement = document.getElementById(id);
+            if (messageElement) {
+                setTimeout(() => {
+                    messageElement.style.display = 'none';
+                }, 3000); // Tiempo en milisegundos (3 segundos)
+            }
+        }
+
+        // Llamar a la función para ocultar los mensajes
+        hideMessage('successMessage');
+        hideMessage('errorMessage');
+    </script>
 </body>
 </html>
