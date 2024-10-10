@@ -1,105 +1,679 @@
- /* Estilos generales */
- body {
-    font-family: Arial, sans-serif;
+body {
+    font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f9f9f9; /* Fondo claro para la página */
+    background-color: #f4f4f4;
 }
 
 .container {
     max-width: 1200px;
-    margin: 0 auto;
-    padding: 10px 20px;
+    margin: auto;
+    padding: 20px;
+}
+
+/* Estilos del header */
+header {
+    background-color: #fff;
+    backdrop-filter: blur(5px);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+/* Contenedor flexible para centrar elementos */
+.header-content {
     display: flex;
-    align-items: center;
     justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
 }
 
 .logo {
     flex: 1;
+    text-align: center;
 }
 
 .logo-img {
-    height: 50px; /* Ajusta la altura según tus necesidades */
+    max-height: 20px;
+    width: auto;
 }
 
+/* Estilos de navegación */
 .nav {
+    flex: 2;
     display: flex;
+    justify-content: center;
     align-items: center;
 }
 
 .nav-item {
-    margin-left: 20px; /* Espaciado entre los elementos */
-    text-decoration: none; /* Sin subrayado */
-    color: #333; /* Color del texto */
-    font-weight: bold; /* Negrita */
-    position: relative; /* Para posicionar dropdown */
-    transition: color 0.3s; /* Transición de color */
+    color: #333;
+    text-decoration: none;
+    margin: 0 15px;
+    display: flex;
+    align-items: center;
+    transition: color 0.3s ease;
 }
 
 .nav-item:hover {
-    color: #007bff; /* Color al pasar el mouse */
+    color: #007bff;
 }
 
+.nav-item i {
+    margin-right: 5px;
+}
+
+/* Estilos para el menú de usuario */
 .user-item {
+    position: relative;
+}
+
+.user-info {
     display: flex;
     align-items: center;
-    position: relative; /* Necesario para el dropdown */
-    margin-left: 10px; /* Espaciado entre los elementos */
+    cursor: pointer;
 }
 
-.user-item i {
-    margin-right: 5px; /* Espaciado entre el ícono y el nombre */
-    font-size: 1.5em; /* Tamaño del ícono */
-    color: #007bff; /* Color del ícono de usuario */
-}
-
-.dropdown {
-    position: relative;
-    display: inline-block; /* Para alinear el dropdown */
+.username {
+    margin: 0 5px;
 }
 
 .dropdown-toggle {
-    background: none; /* Sin fondo */
-    border: none; /* Sin borde */
-    cursor: pointer; /* Cursor pointer */
-    font-size: 1em; /* Tamaño del texto */
-    margin-left: 5px; /* Espaciado */
-    color: #333; /* Color del botón */
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
 }
 
 .dropdown-content {
-    display: none; /* Ocultar por defecto */
-    position: absolute; /* Posicionamiento absoluto */
-    background-color: #ffffff; /* Fondo blanco */
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2); /* Sombra */
-    z-index: 1; /* Apilar encima */
-    border-radius: 5px; /* Bordes redondeados */
-    min-width: 160px; /* Ancho mínimo */
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: #fff;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    border-radius: 4px;
 }
 
 .dropdown-content a {
-    color: #333; /* Color del texto */
-    padding: 12px 16px; /* Espaciado interno */
-    text-decoration: none; /* Sin subrayado */
-    display: block; /* Bloque */
-    transition: background-color 0.3s; /* Transición de color de fondo */
+    color: #333;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
 }
 
 .dropdown-content a:hover {
-    background-color: #f1f1f1; /* Efecto hover */
+    background-color: #f1f1f1;
 }
 
-.dropdown:hover .dropdown-content {
-    display: block; /* Mostrar en hover */
+.user-item:hover .dropdown-content {
+    display: block;
 }
 
+/* Estilos para el botón de menú en móviles */
 .menu-toggle {
-    display: none; /* Ocultar el botón de menú para usuarios autenticados */
+    display: none;
+    background: none;
+    border: none;
+    color: #333;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+/* Media queries para responsividad */
+@media (max-width: 768px) {
+    .header-content {
+        flex-direction: column;
+    }
+
+    .logo {
+        margin-bottom: 10px;
+    }
+
+    .nav {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .nav-item {
+        margin: 5px 0;
+    }
+
+    .menu-toggle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    .menu-toggle i {
+        margin-right: 5px;
+    }
+
+    /* Ocultar elementos de navegación por defecto en móviles */
+    .nav-item, .user-item {
+        display: none;
+    }
+
+    /* Mostrar menú en móviles cuando está activo */
+    .nav.active .nav-item,
+    .nav.active .user-item {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        margin: 10px 0;
+    }
+
+    .dropdown-content {
+        position: static;
+        box-shadow: none;
+        display: none;
+    }
+
+    .user-item:hover .dropdown-content {
+        display: none;
+    }
+
+    .nav.active .dropdown-content {
+        display: block;
+        width: 100%;
+    }
+}
+
+/* Animaciones y transiciones */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.nav-item, .user-item, .dropdown-content {
+    animation: fadeIn 0.3s ease;
+}
+
+/* Estilos adicionales para mejorar la apariencia */
+.nav-item, .user-info {
+    font-weight: 500;
+}
+
+.dropdown-toggle svg {
+    transition: transform 0.3s ease;
+}
+
+.user-item:hover .dropdown-toggle svg {
+    transform: rotate(180deg);
+}
+
+/* Estilos para el botón de inicio de sesión cuando no hay sesión activa */
+.nav-item[href="login-register.php"] {
+    background-color: #007bff;
+    color: #ffffff;
+    padding: 8px 15px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.nav-item[href="login-register.php"]:hover {
+    background-color: #0056b3;
+} 
+
+/*ESTILOS PARA LAS ETIQUETAS FLOTANTES*/
+
+.floating-tags {
+    position: fixed;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+}
+
+.floating-tag {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 12px 18px;
+    margin-bottom: 15px;
+    border-radius: 30px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.floating-tag:hover {
+    background-color: var(--secondary-color);
+    transform: translateX(-5px);
+}
+
+.floating-tag i {
+    margin-right: 10px;
+    font-size: 1.2em;
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1001;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.6);
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: 10% auto;
+    padding: 30px;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 600px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+    from { transform: translateY(-50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.close {
+    color: var(--secondary-color);
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.close:hover,
+.close:focus {
+    color: var(--accent-color);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-content h2 {
+    color: var(--primary-color);
+    margin-top: 0;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--secondary-color);
+    font-weight: bold;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: var(--primary-color);
+    outline: none;
+}
+
+.submit-btn {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.submit-btn:hover {
+    background-color: var(--secondary-color);
+}
+
+.contact-info {
+    margin-bottom: 20px;
+}
+
+.contact-info li {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.contact-info i {
+    margin-right: 10px;
+    color: var(--primary-color);
+}
+
+/*ESTILOS PARA LA SECCION DE BUSQUEDA DE HABITACIONES*/
+
+.hero {
+    background-image: url('../img/fondo.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 20px;
+    color: #ffffff;
+}
+
+.hero h1 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    animation: fadeInDown 1s ease-out;
+}
+
+.hero p {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    animation: fadeInUp 1s ease-out 0.5s;
+    animation-fill-mode: both;
+}
+
+.search-box {
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    max-width: 800px;
+    width: 100%;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 1s ease-out 1s;
+    animation-fill-mode: both;
+}
+
+.search-item {
+    flex: 1 1 200px;
+    display: flex;
+    align-items: center;
+    background-color: #ffffff;
+    border-radius: 5px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.search-item:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.search-item i {
+    padding: 10px;
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+.search-item input,
+.search-item select {
+    flex-grow: 1;
+    padding: 10px;
+    border: none;
+    font-size: 1rem;
+    color: #333;
+}
+
+.search-item input:focus,
+.search-item select:focus {
+    outline: none;
+    background-color: #f9f9f9;
+}
+
+.search-button {
+    flex: 1 1 100%;
+    padding: 12px 20px;
+    background-color: #007bff;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.search-button:hover {
+    background-color: #0056b3;
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
 @media (max-width: 768px) {
-    .menu-toggle {
-        display: block; /* Mostrar el botón en dispositivos móviles */
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+
+    .hero p {
+        font-size: 1.2rem;
+    }
+
+    .search-box {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .search-item {
+        flex: 1 1 auto;
+    }
+}
+
+/*ESTILOS PARA LAS CARDS DE LAS HABITACIONES*/
+
+:root {
+    --primary-color: #007bff;
+    --secondary-color: #6c757d;
+    --accent-color: #ffc107;
+    --text-color: #333;
+    --background-color: #f8f9fa;
+}
+
+.filter-section {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    border: 2px solid var(--primary-color);
+    padding: 0.5rem 1rem;
+    margin: 0.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: bold;
+    border-radius: 25px;
+}
+
+.filter-btn:hover, .filter-btn.active {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 2rem;
+}
+
+.card {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.card.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.card-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.card:hover .card-img {
+    transform: scale(1.05);
+}
+
+.card-content {
+    padding: 1.5rem;
+}
+
+.card-content h2 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.card-content p {
+    color: var(--text-color);
+    margin-bottom: 1rem;
+}
+
+.card-content ul {
+    list-style-type: none;
+    padding: 0;
+    margin-bottom: 1rem;
+}
+
+.card-content ul li {
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+}
+
+.card-content ul li i {
+    color: var(--accent-color);
+    margin-right: 0.5rem;
+}
+
+.price {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+.price span {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.book-now {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border-radius: 25px;
+}
+
+.book-now:hover {
+    background-color: #0056b3;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        grid-template-columns: 1fr;
     }
 }
