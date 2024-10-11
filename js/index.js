@@ -133,3 +133,30 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+// FUNCION PARA EL MENU DESPLEGABLE
+
+document.addEventListener('DOMContentLoaded', function() {
+    const sidebarToggle = document.querySelector('.menu-toggle');
+    const sidebarWrapper = document.querySelector('.sidebar');
+    let isSidebarOpen = false;
+  
+    sidebarToggle.addEventListener('click', function() {
+      isSidebarOpen = !isSidebarOpen;
+      sidebarWrapper.classList.toggle('sidebar-open');
+  
+      if (isSidebarOpen) {
+        document.body.style.overflow = 'hidden';
+      } else {
+        document.body.style.overflow = '';
+      }
+    });
+  
+    const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+    dropdownToggles.forEach(toggle => {
+      toggle.addEventListener('click', function(e) {
+        e.stopPropagation();
+        const menu = this.nextElementSibling;
+        menu.style.display = menu.style.display === 'none' ? 'block' : 'none';
+      });
+    });
+  });

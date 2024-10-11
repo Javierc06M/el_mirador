@@ -25,11 +25,10 @@
     </div>
 
     <header>
-    <header>
     <div class="container">
         <div class="header-content">
             <div class="logo">
-                <img src="" alt="Hospedaje El Mirador" class="logo-img">
+                <img src="img/logo.jpg" alt="Hospedaje El Mirador" class="logo-img" width="50px" height="" >
             </div>
             <?php session_start(); // Asegúrate de iniciar la sesión ?>
             
@@ -52,15 +51,33 @@
                             <a href="php/logout.php">Cerrar sesión</a>
                         </div>
                     </div>
+                    <button class="menu-toggle" aria-label="Abrir menú">
+                        <i class="fas fa-bars"></i>
+                    </button>
                 <?php else: ?>
                     <a href="login-register.php" class="nav-item"><i class="fas fa-user"></i> <span>Iniciar sesión</span></a>
                 <?php endif; ?>
             </nav>
 
-            <button class="menu-toggle">
-                <i class="fas fa-bars"></i>
-                <span>Menú</span>
-            </button>
+            <?php if (isset($_SESSION['usuario'])): ?>
+                <div class="sidebar-overlay"></div>
+                <div class="sidebar">
+                    <div class="sidebar-header">
+                        <h2>Menú Principal</h2>
+                        <button class="close-sidebar" aria-label="Cerrar menú">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    <nav class="sidebar-nav">
+                        <a href="#" class="sidebar-item"><i class="fas fa-home"></i> Inicio</a>
+                        <a href="#" class="sidebar-item"><i class="fas fa-hotel"></i> Habitaciones</a>
+                        <a href="#" class="sidebar-item"><i class="fas fa-utensils"></i> Restaurante</a>
+                        <a href="#" class="sidebar-item"><i class="fas fa-spa"></i> Servicios</a>
+                        <a href="#" class="sidebar-item"><i class="fas fa-info-circle"></i> Acerca de</a>
+                        <a href="#" class="sidebar-item"><i class="fas fa-envelope"></i> Contacto</a>
+                    </nav>
+                </div>
+            <?php endif; ?>
         </div>
     </div>
 </header>
@@ -100,6 +117,12 @@
             <button class="filter-btn" data-filter="dobles">Dobles</button>
             <button class="filter-btn" data-filter="matrimoniales">Matrimoniales</button>
         </div>
+        
+        <div class="price-filter">
+            <label for="price-range">Buscar Por Precio:</label>
+            <input type="number" id="price-range" placeholder="Ingrese el precio en S/">
+            <button onclick="filterRooms()">Buscar</button>
+        </div>
     
         <div class="container">
             <div class="card grupales">
@@ -114,7 +137,7 @@
                         <li><i class="fas fa-tv"></i> TV de 50''</li>
                     </ul>
                     <div class="price">
-                        <span>S/ 350.00</span>
+                        <span>S/ 100.00</span>
                         <button class="book-now">Reservar</button>
                     </div>
                 </div>
@@ -133,7 +156,7 @@
                         <li><i class="fas fa-tv"></i> TV de 50''</li>
                     </ul>
                     <div class="price">
-                        <span>S/ 350.00</span>
+                        <span>S/ 200.00</span>
                         <button class="book-now">Reservar</button>
                     </div>
                 </div>
@@ -151,12 +174,13 @@
                         <li><i class="fas fa-tv"></i> TV de 50''</li>
                     </ul>
                     <div class="price">
-                        <span>S/ 350.00</span>
+                        <span>S/ 300.00</span>
                         <button class="book-now">Reservar</button>
                     </div>
                 </div>
             </div>
-    
+
+
             <div class="card matrimoniales">
                 <img src="img/room4.jpg" alt="Habitación Matrimonial" class="card-img">
                 <div class="card-content">
@@ -169,7 +193,7 @@
                         <li><i class="fas fa-tv"></i> TV de 50''</li>
                     </ul>
                     <div class="price">
-                        <span>S/ 350.00</span>
+                        <span>S/ 400.00</span>
                         <button class="book-now">Reservar</button>
                     </div>
                 </div>
@@ -214,10 +238,12 @@
         </form>
     </div>
 </div>
-    
+
+
         <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
         <script src="js/index.js"></script>
         <script src="js/desplegable-user.js"></script>
+        <script src="js/precio.js"></script>
     </main>
 
 </body>
