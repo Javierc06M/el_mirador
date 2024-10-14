@@ -59,11 +59,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if ($stmt->execute()) {
         // Registro exitoso, enviar redirección con mensaje de éxito
-        header("Location: ../login-register.php?registered=true&message=Registro%20exitoso");
+        header("Location: ../../../views/login-register.php?registered=true&message=Registro%20exitoso");
         exit();
     } else {
         // Redirigir con mensaje de error
-        header("Location: ../login-register.php?error=Error al registrar usuario: " . $stmt->error);
+        header("Location: ../../../views/login-register.php?error=Error al registrar usuario: " . $stmt->error);
         exit();
     }
 

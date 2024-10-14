@@ -132,6 +132,3 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
-
-// FUNCION PARA EL MENU DESPLEGABLE
-

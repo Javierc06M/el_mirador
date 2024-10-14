@@ -4,10 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inicio</title>
-    <link rel="stylesheet" href="style/index.css?v=<?php echo time();?>">
-    <link rel="stylesheet" href="style/desplegable.css?v=<?php echo time();?>">
-    <link rel="stylesheet" href="style/responsive.css?v=<?php echo time();?>">
-    <link rel="stylesheet" href="style/services.css?v=<?php echo time();?>">
+    <link rel="stylesheet" href="<?php echo $url .'/public/resources/css/index.css'?>?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="<?php echo $url .'public/resources/css/desplegable.css'?>?v=<?php echo time();?>">
+    <link rel="stylesheet" href="<?php echo $url .'/public/resources/css/services.css'?>?v=<?php echo time();?>">
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -27,6 +26,8 @@
     </div>
 
     <header>
+
+
     <div class="container">
         <div class="header-content">
             <div class="logo">
@@ -50,7 +51,7 @@
                         </div>
                         <div class="dropdown-content">
                             <a href="perfil.php">Perfil</a>
-                            <a href="php/logout.php">Cerrar sesión</a>
+                            <a href="../public/resources/php/logout.php">Cerrar sesión</a>
                         </div>
                     </div>
                 <?php else: ?>
@@ -75,7 +76,7 @@
                         <a href="#" class="sidebar-item"><i class="fas fa-home"></i> Inicio</a>
                         <a href="#" class="sidebar-item"><i class="fas fa-hotel"></i> Habitaciones</a>
                         <a href="restaurante.php" class="sidebar-item"><i class="fas fa-utensils"></i> Restaurante</a>
-                        <a href="#" class="sidebar-item"><i class="fas fa-spa"></i> Servicios</a>
+                        <a href="tours.php" class="sidebar-item"><i class="fas fa-spa"></i> Servicios</a>
                         <a href="#" class="sidebar-item"><i class="fas fa-info-circle"></i> Acerca de</a>
                     </nav>
                 </div>
@@ -132,7 +133,7 @@
             
                 <div class="room-cards">
                     <div class="room-card grupales">
-                        <img src="img/room1.avif" alt="Habitación Grupal" class="card-img">
+                        <img src="../public/resources/img/room1.avif" alt="Habitación Grupal" class="card-img">
                         <div class="room-card-content">
                             <h2>Habitación Deluxe Grupal</h2>
                             <p>Una habitación cómoda con vista al mar, camas amplias, wifi gratuito, y desayuno incluido.</p>
@@ -150,7 +151,7 @@
                     </div>
                     
                     <div class="room-card simples">
-                        <img src="img/room2.jpg" alt="Habitación Simple" class="card-img">
+                        <img src="../public/resources/img/room2.jpg" alt="Habitación Simple" class="card-img">
                         <div class="room-card-content">
                             <h2>Habitación Simple Confort</h2>
                             <p>Perfecta para el viajero solitario, con todas las comodidades necesarias.</p>
@@ -168,7 +169,7 @@
                     </div>
             
                     <div class="room-card dobles">
-                        <img src="img/room3.avif" alt="Habitación Doble" class="card-img">
+                        <img src="../public/resources/img/room3.avif" alt="Habitación Doble" class="card-img">
                         <div class="room-card-content">
                             <h2>Habitación Doble Superior</h2>
                             <p>Espaciosa habitación con dos camas, ideal para amigos o familiares.</p>
@@ -186,7 +187,7 @@
                     </div>
 
                     <div class="room-card matrimoniales">
-                        <img src="img/room4.jpg" alt="Habitación Matrimonial" class="card-img">
+                        <img src="../public/resources/img/room4.jpg" alt="Habitación Matrimonial" class="card-img">
                         <div class="room-card-content">
                             <h2>Suite Matrimonial</h2>
                             <p>Lujosa suite con cama king-size, perfecta para parejas en busca de confort y romance.</p>
@@ -214,7 +215,7 @@
                 <p class="section-subtitle">Descubre sabores únicos en nuestros restaurantes de clase mundial</p>
                 <div class="restaurant-cards">
                     <div class="restaurant-card">
-                        <img src="img/restaurante.jpeg" alt="Restaurante El Mirador" class="card-img">
+                        <img src="../public/resources/img/restaurante.jpeg" alt="Restaurante El Mirador" class="card-img">
                         <div class="restaurant-card-content">
                             <h3 class="card-title">El Mirador</h3>
                             <p class="card-description">Disfrute de una cocina gourmet con vistas panorámicas de la ciudad. Nuestra carta fusiona sabores locales con técnicas internacionales.</p>
@@ -222,7 +223,7 @@
                         </div>
                     </div>
                     <div class="restaurant-card">
-                        <img src="img/coffe.jpeg" alt="Café del Sol" class="card-img">
+                        <img src="../public/resources/img/coffe.jpeg" alt="Café del Sol" class="card-img">
                         <div class="restaurant-card-content">
                             <h3 class="card-title">Café del Sol</h3>
                             <p class="card-description">Un acogedor café con deliciosos postres y bebidas artesanales. El lugar perfecto para relajarse y disfrutar de la atmósfera local.</p>
@@ -230,7 +231,7 @@
                         </div>
                     </div>
                     <div class="restaurant-card">
-                        <img src="img/terraza.jpeg" alt="La Terraza" class="card-img">
+                        <img src="../public/resources/img/terraza.jpeg" alt="La Terraza" class="card-img">
                         <div class="restaurant-card-content">
                             <h3 class="card-title">La Terraza</h3>
                             <p class="card-description">Bar y restaurante al aire libre con música en vivo. Disfrute de cócteles artesanales y tapas mientras contempla el atardecer.</p>
@@ -251,7 +252,7 @@
                     <button class="slider-button next">&#10095;</button>
                     <div class="slider-container">
                         <div class="slider-card">
-                            <img src="img/chachapoyas.jpg" alt="Tour por la ciudad" class="card-img">
+                            <img src="../public/resources/img/chachapoyas.jpg" alt="Tour por la ciudad" class="card-img">
                             <div class="restaurant-card-content">
                                 <h3 class="card-title">Tour por la Ciudad</h3>
                                 <p class="card-description">Descubra los secretos y la historia de Chachapoyas con nuestros guías expertos. Una experiencia cultural enriquecedora.</p>
@@ -259,7 +260,7 @@
                             </div>
                         </div>
                         <div class="slider-card">
-                            <img src="img/kuelap.jpeg" alt="Excursión a Kuelap" class="card-img">
+                            <img src="../public/resources/img/kuelap.jpeg" alt="Excursión a Kuelap" class="card-img">
                             <div class="restaurant-card-content">
                                 <h3 class="card-title">Excursión a Kuelap</h3>
                                 <p class="card-description">Visite la impresionante fortaleza de Kuelap, conocida como el "Machu Picchu del norte". Una maravilla arqueológica que no puede perderse.</p>
@@ -267,7 +268,7 @@
                             </div>
                         </div>
                         <div class="slider-card">
-                            <img src="img/gocta.jpeg" alt="Catarata de Gocta" class="card-img">
+                            <img src="../public/resources/img/gocta.jpeg" alt="Catarata de Gocta" class="card-img">
                             <div class="restaurant-card-content">
                                 <h3 class="card-title">Catarata de Gocta</h3>
                                 <p class="card-description">Aventúrese a una de las cataratas más altas del mundo. Una experiencia de senderismo y naturaleza inolvidable.</p>
@@ -321,70 +322,10 @@
 
     
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-        <script src="js/index.js"></script>
-        <script src="js/desplegable-user.js"></script>
-        <script src="js/precio.js"></script>
-        <script>
-             // Función para mostrar/ocultar el menú
-            document.getElementById("menu-toggle").addEventListener("click", function () {
-                document.querySelector(".sidebar").classList.toggle("show");
-                document.querySelector(".sidebar-overlay").classList.toggle("show");
-            });
-
-            // Cerrar el menú al hacer clic en el botón de cerrar
-            document.querySelector(".close-sidebar").addEventListener("click", function () {
-                document.querySelector(".sidebar").classList.remove("show");
-                document.querySelector(".sidebar-overlay").classList.remove("show");
-            });
-
-            // Cerrar el menú al hacer clic fuera de la barra lateral (en la superposición)
-            document.querySelector(".sidebar-overlay").addEventListener("click", function () {
-                document.querySelector(".sidebar").classList.remove("show");
-                document.querySelector(".sidebar-overlay").classList.remove("show");
-            });
-        </script>
-
-<script>
-        // Scripts existentes...
-  // Funcionalidad para el slider de servicios y tours
-  const sliderContainer = document.querySelector('.slider-container');
-        const prevButton = document.querySelector('.slider-button.prev');
-        const nextButton = document.querySelector('.slider-button.next');
-        let slideIndex = 0;
-
-        function showSlide(index) {
-            const slides = document.querySelectorAll('.slider-card');
-            if (index >= slides.length) slideIndex = 0;
-            if (index < 0) slideIndex = slides.length - 1;
-            
-            const offset = -slideIndex * 100;
-            sliderContainer.style.transform = `translateX(${offset}%)`;
-        }
-
-        prevButton.addEventListener('click', () => {
-            slideIndex--;
-            showSlide(slideIndex);
-        });
-
-        nextButton.addEventListener('click', () => {
-            slideIndex++;
-            showSlide(slideIndex);
-        });
-
-        // Responsive behavior
-        function handleResize() {
-            const width = window.innerWidth;
-            if (width >= 1025) {
-                sliderContainer.style.transform = 'translateX(0)';
-            } else if (width >= 769 && width <= 1024) {
-                sliderContainer.style.transform = 'translateX(0)';
-            } else {
-                showSlide(slideIndex);
-            }
-        }
-
-        window.addEventListener('resize', handleResize);
-        handleResize(); // Initial call
-    </script>
+        <script src="../public/resources/js/index.js?v=<?php echo time(); ?>"></script>
+        <script src="../public/resources/js/desplegable-user.js?v=<?php echo time(); ?>"></script>
+        <script src="../public/resources/js/precio.js?v=<?php echo time(); ?>"></script>
+        <script src="../public/resources/js/services.js?v=<?php echo time(); ?>"></script>
+        <script src="../public/resources/js/menu.js?v=<?php echo time(); ?>"></script>
 </body>
 </html>

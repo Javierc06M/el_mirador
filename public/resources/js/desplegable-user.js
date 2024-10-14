@@ -1,15 +1,17 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const menuToggle = document.getElementById('menu-toggle');
-    const sidebar = document.querySelector('.sidebar');
-    const sidebarOverlay = document.querySelector('.sidebar-overlay');
-    const closeSidebar = document.querySelector('.close-sidebar');
+// Función para mostrar/ocultar el menú
+document.getElementById("menu-toggle").addEventListener("click", function () {
+    document.querySelector(".sidebar").classList.toggle("show");
+    document.querySelector(".sidebar-overlay").classList.toggle("show");
+});
 
-    function toggleSidebar() {
-        sidebar.classList.toggle('open');
-        sidebarOverlay.style.display = sidebar.classList.contains('open') ? 'block' : 'none';
-    }
+// Cerrar el menú al hacer clic en el botón de cerrar
+document.querySelector(".close-sidebar").addEventListener("click", function () {
+    document.querySelector(".sidebar").classList.remove("show");
+    document.querySelector(".sidebar-overlay").classList.remove("show");
+});
 
-    menuToggle.addEventListener('click', toggleSidebar);
-    closeSidebar.addEventListener('click', toggleSidebar);
-    sidebarOverlay.addEventListener('click', toggleSidebar);
+// Cerrar el menú al hacer clic fuera de la barra lateral (en la superposición)
+document.querySelector(".sidebar-overlay").addEventListener("click", function () {
+    document.querySelector(".sidebar").classList.remove("show");
+    document.querySelector(".sidebar-overlay").classList.remove("show");
 });

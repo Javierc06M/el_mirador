@@ -38,16 +38,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $_SESSION['usuario'] = $user['usuario']; // Guardar el nombre de usuario en la sesión
             
             // Redirigir al usuario a la página principal o a la cuenta
-            header("Location: ../index.php"); // Cambia a la ruta deseada
+            header("Location: ../../../views/inicio.php"); // Cambia a la ruta deseada
             exit();
         } else {
             // Contraseña incorrecta
-            header("Location: ../login-register.php?error=Contraseña incorrecta");
+            header("Location: ../../../views/login-register.php?error=Contraseña incorrecta");
             exit();
         }
     } else {
         // Usuario no encontrado
-        header("Location: ../login-register.php?error=Usuario no encontrado");
+        header("Location: ../../../views/login-register.php?error=Usuario no encontrado");
         exit();
     }
 

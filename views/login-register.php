@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style/register.css">
+    <link rel="stylesheet" href="../public/resources/css/register.css?v=<?php echo time(); ?>">
     <title>Login / Registro</title>
 </head>
 <body>
@@ -22,7 +22,7 @@
         <?php endif; ?>
 
         <div class="form-container sign-up-container">
-            <form id="signUpForm" action="php/registeruser.php" method="POST">
+            <form id="signUpForm" action="../public/resources/php/registeruser.php" method="POST">
                 <h1>Crear Cuenta</h1>
                 <input type="text" placeholder="Nombre" id="signUpName" name="nombre" required />
                 <input type="text" placeholder="Apellidos" id="signUpName" name="apellido" required />
@@ -42,7 +42,7 @@
         </div>
         
         <div class="form-container sign-in-container">
-            <form id="signInForm" action="php/loginuser.php" method="POST">
+            <form id="signInForm" action="../public/resources/php/loginuser.php" method="POST">
                 <h1>Iniciar Sesión</h1>
                 <input type="email" name="correo" placeholder="Email" id="signInEmail" required />
                 <div class="input-group">
@@ -74,7 +74,7 @@
         </div>
     </div>
 
-    <script src="js/register.js"></script>
+    <script src="../public/resources/js/register.js?v= <?php echo time(); ?>"></script>
 
     <style>
         .success-message {
