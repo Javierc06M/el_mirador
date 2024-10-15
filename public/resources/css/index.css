@@ -533,7 +533,7 @@ body {
 /*ESTILOS PARA LA SECCION DE BUSQUEDA DE HABITACIONES*/
 
 .hero {
-    background-image: url('../img/chacha2.jpeg');
+    background-image: url('../img/fondo.png');
     background-size: cover;
     background-position: center;
     height: 100vh;

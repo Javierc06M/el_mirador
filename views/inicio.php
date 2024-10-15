@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inicio</title>
-    <link rel="stylesheet" href="<?php echo $url .'/public/resources/css/index.css'?>?v=<?php echo time(); ?>">
-    <link rel="stylesheet" href="<?php echo $url .'public/resources/css/desplegable.css'?>?v=<?php echo time();?>">
-    <link rel="stylesheet" href="<?php echo $url .'/public/resources/css/services.css'?>?v=<?php echo time();?>">
+    <link rel="stylesheet" href="<?php echo $url .'public/resources/css/index.css'?>">
+    <link rel="stylesheet" href="<?php echo $url .'public/resources/css/desplegable.css' ?>">
+    <link rel="stylesheet" href="<?php echo $url .'public/resources/css/services.css'?>">
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -31,7 +31,7 @@
     <div class="container">
         <div class="header-content">
             <div class="logo">
-                <img src="img/logjpg" alt="Hospedaje El Mirador" class="logo-img" width="50px" height="" >
+                <img src="" alt="Hospedaje El Mirador" class="logo-img" width="50px" height="" >
             </div>
             <?php session_start(); // Asegúrate de iniciar la sesión ?>
             
@@ -55,7 +55,7 @@
                         </div>
                     </div>
                 <?php else: ?>
-                    <a href="login-register.php" class="nav-item"><i class="fas fa-user"></i> <span>Iniciar sesión</span></a>
+                    <a href="<?php echo $url .'login-register.php' ?>" class="nav-item"><i class="fas fa-user"></i> <span>Iniciar sesión</span></a>
                 <?php endif; ?>
             </nav>
 
@@ -322,10 +322,10 @@
 
     
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-        <script src="../public/resources/js/index.js?v=<?php echo time(); ?>"></script>
-        <script src="../public/resources/js/desplegable-user.js?v=<?php echo time(); ?>"></script>
-        <script src="../public/resources/js/precio.js?v=<?php echo time(); ?>"></script>
-        <script src="../public/resources/js/services.js?v=<?php echo time(); ?>"></script>
-        <script src="../public/resources/js/menu.js?v=<?php echo time(); ?>"></script>
+        <script src="<?php echo $url .'public/resources/js/index.js' ?>"></script>
+        <script src="<?php echo $url .'public/resources/js/desplegable-user.js' ?>"></script>
+        <script src="<?php echo $url .'public/resources/js/precio.js' ?>"></script>
+        <script src="<?php echo $url .'public/resources/js/services.js' ?>"></script>
+        <script src="<?php echo $url .'public/resources/js/menu.js' ?>"></script>
 </body>
 </html>
