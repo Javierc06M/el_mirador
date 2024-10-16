@@ -1,3 +1,7 @@
+<?php
+    include '../config/app.php';
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -5,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inicio</title>
     <link rel="stylesheet" href="<?php echo $url .'public/resources/css/index.css'?>">
-    <link rel="stylesheet" href="<?php echo $url .'public/resources/css/desplegable.css' ?>">
+    <link rel="stylesheet" href="<?php echo $url .'public/resources/css/desplegable.css'?>">
     <link rel="stylesheet" href="<?php echo $url .'public/resources/css/services.css'?>">
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
@@ -26,64 +30,58 @@
     </div>
 
     <header>
-
-
-    <div class="container">
-        <div class="header-content">
-            <div class="logo">
-                <img src="" alt="Hospedaje El Mirador" class="logo-img" width="50px" height="" >
-            </div>
-            <?php session_start(); // Asegúrate de iniciar la sesión ?>
-            
-            <nav class="nav">
-                <a href="#" class="nav-item"><i class="fas fa-heart"></i> <span>Favoritos</span></a>
-                <a href="#" class="nav-item"><i class="fas fa-globe"></i> <span>ES · S/.</span></a>
-                
-                <?php if (isset($_SESSION['usuario'])): ?>
-                    <div class="nav-item user-item">
-                        <div class="user-info">
-                            <i class="fas fa-user-circle"></i>
-                            <span class="username"><?php echo htmlspecialchars($_SESSION['usuario']); ?></span>
-                            <button class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">
-                                <span class="sr-only">Toggle user menu</span>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg>
-                            </button>
-                        </div>
-                        <div class="dropdown-content">
-                            <a href="perfil.php">Perfil</a>
-                            <a href="../public/resources/php/logout.php">Cerrar sesión</a>
-                        </div>
-                    </div>
-                <?php else: ?>
-                    <a href="<?php echo $url .'login-register.php' ?>" class="nav-item"><i class="fas fa-user"></i> <span>Iniciar sesión</span></a>
-                <?php endif; ?>
-            </nav>
-
-            <?php if (isset($_SESSION['usuario'])): ?>
-                <button id="menu-toggle" class="menu-toggle" aria-label="Abrir menú">
-                    <i class="fas fa-bars"></i>
-                </button>
-
-                <div class="sidebar-overlay"></div>
-                <div class="sidebar">
-                    <div class="sidebar-header">
-                        <h2>Menú Principal</h2>
-                        <button class="close-sidebar" aria-label="Cerrar menú">
-                            <i class="fas fa-times"></i>
-                        </button>
-                    </div>
-                    <nav class="sidebar-nav">
-                        <a href="#" class="sidebar-item"><i class="fas fa-home"></i> Inicio</a>
-                        <a href="#" class="sidebar-item"><i class="fas fa-hotel"></i> Habitaciones</a>
-                        <a href="restaurante.php" class="sidebar-item"><i class="fas fa-utensils"></i> Restaurante</a>
-                        <a href="tours.php" class="sidebar-item"><i class="fas fa-spa"></i> Servicios</a>
-                        <a href="#" class="sidebar-item"><i class="fas fa-info-circle"></i> Acerca de</a>
-                    </nav>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <img src="logo.png" alt="Hospedaje El Mirador" class="logo-img" width="50" height="50">
                 </div>
-            <?php endif; ?>
+                
+                <nav class="nav">
+                    <a href="#" class="nav-item"><i class="fas fa-heart"></i> <span>Favoritos</span></a>
+                    <a href="#" class="nav-item"><i class="fas fa-globe"></i> <span>ES · S/.</span></a>
+                    
+                    <?php if (isset($_SESSION['usuario'])): ?>
+                        <div class="nav-item user-item">
+                            <div class="user-info" id="userDropdown">
+                                <i class="fas fa-user-circle"></i>
+                                <span class="username"><?php echo htmlspecialchars($_SESSION['usuario']); ?></span>
+                                <button class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+                                    <span class="sr-only">Toggle user menu</span>
+                                    <i class="fas fa-chevron-down"></i>
+                                </button>
+                            </div>
+                            <div class="dropdown-content" id="userDropdownContent">
+                                <a href="perfil.php">Perfil</a>
+                                <a href="logout.php">Cerrar sesión</a>
+                            </div>
+                        </div>
+                        <button id="menu-toggle" class="menu-toggle" aria-label="Abrir menú">
+                            <i class="fas fa-bars"></i>
+                        </button>
+                    <?php else: ?>
+                        <a href="<?php echo $url .'views/login-register.php' ?>" class="nav-item" id="loginButton"><i class="fas fa-user"></i> <span>Iniciar sesión</span></a>
+                    <?php endif; ?>
+                </nav>
+            </div>
         </div>
-    </div>
-</header>
+
+        <div class="sidebar-overlay" id="sidebarOverlay"></div>
+        <div class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <h2>Menú Principal</h2>
+                <button class="close-sidebar" id="closeSidebar" aria-label="Cerrar menú">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="#" class="sidebar-item"><i class="fas fa-home"></i> Inicio</a>
+                <a href="#" class="sidebar-item"><i class="fas fa-hotel"></i> Habitaciones</a>
+                <a href="restaurante.php" class="sidebar-item"><i class="fas fa-utensils"></i> Restaurante</a>
+                <a href="tours.php" class="sidebar-item"><i class="fas fa-spa"></i> Servicios</a>
+                <a href="#" class="sidebar-item"><i class="fas fa-info-circle"></i> Acerca de</a>
+            </nav>
+        </div>
+    </header>
 
 
     <section class="hero">

@@ -49,7 +49,7 @@
             <h2 class="section-title">Nuestros Destinos</h2>
             <div class="destination-grid">
                 <div class="destination-card">
-                    <img src="<?php echo $url .'public/resources/img/chachapoyas.jpg' ?>" alt="Chachapoyas">
+                    <img src="<?php echo $url .'public/resources/img/chacha.jpeg' ?>" height="500px" alt="Chachapoyas">
                     <div class="destination-content">
                         <h3>CHACHAPOYAS</h3>
                         <p>Uno de los destinos más emblemáticos de Perú, envuelto en historia y misterio.</p>
@@ -67,7 +67,7 @@
                     </div>
                 </div>
                 <div class="destination-card">
-                    <img src="<?php echo $url .'public/resources/img/gocta.jpeg' ?>" alt="Gocta">
+                    <img src="<?php echo $url .'public/resources/img/gocta.jpeg' ?>" height="500px" alt="Gocta">
                     <div class="destination-content">
                         <h3>Catarata De Gocta</h3>
                         <p>Adéntrate en la jungla amazónica y descubre su biodiversidad única.</p>

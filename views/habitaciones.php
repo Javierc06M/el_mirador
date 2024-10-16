@@ -1,3 +1,7 @@
+<?php
+    include '../config/app.php'
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -42,21 +46,21 @@
     <main>
         <section id="inicio" class="hero">
             <div class="hero-carousel">
-                <div class="hero-slide" style="background-image: url(<?php echo $url .'public/resources/img/chachapoyas.png'?>);">
+                <div class="hero-slide" style="background-image: url(<?php echo $url .'public/resources/img/chacha.jpeg'?>);">
                     <div class="hero-content">
                         <h1>Bienvenido a Hospedaje El Mirador</h1>
                         <p>Tu hogar lejos de casa en el corazón de la ciudad</p>
                         <a href="#habitaciones" class="cta-btn">Ver Habitaciones</a>
                     </div>
                 </div>
-                <div class="hero-slide" style="background-image: url('/placeholder.svg?height=600&width=1200&text=Habitaciones');">
+                <div class="hero-slide" style="background-image: url(<?php echo $url .'public/resources/img/room5.png'?>);">
                     <div class="hero-content">
                         <h1>Descubre Nuestras Habitaciones</h1>
                         <p>Confort y estilo para cada tipo de viajero</p>
                         <a href="#habitaciones" class="cta-btn">Explorar Ahora</a>
                     </div>
                 </div>
-                <div class="hero-slide" style="background-image: url('/placeholder.svg?height=600&width=1200&text=Servicios');">
+                <div class="hero-slide" style="background-image: url('<?php echo $url .'public/resources/img/services.png'?>');">
                     <div class="hero-content">
                         <h1>Servicios de Primera Clase</h1>
                         <p>Disfruta de nuestras instalaciones y comodidades</p>
@@ -82,7 +86,7 @@
                 </div>
                 <div class="room-catalog">
                     <div class="room-card" data-category="simple">
-                        <img src="/placeholder.svg?height=200&width=300&text=Habitación+Individual" alt="Habitación Individual" class="room-image">
+                        <img src="<?php echo $url .'public/resources/img/room-individual.png'?>" alt="Habitación Individual" class="room-image">
                         <div class="room-info">
                             <h3>Habitación Individual</h3>
                             <p>Perfecta para viajeros solitarios</p>
@@ -96,7 +100,7 @@
                         </div>
                     </div>
                     <div class="room-card" data-category="doble">
-                        <img src="/placeholder.svg?height=200&width=300&text=Habitación+Doble" alt="Habitación Doble" class="room-image">
+                        <img src="<?php echo $url .'public/resources/img/room-doble.jpg'?>" alt="Habitación Doble" class="room-image">
                         <div class="room-info">
                             <h3>Habitación Doble</h3>
                             <p>Ideal para parejas o amigos</p>
@@ -111,7 +115,7 @@
                         </div>
                     </div>
                     <div class="room-card" data-category="matrimonial">
-                        <img src="/placeholder.svg?height=200&width=300&text=Suite+Matrimonial" alt="Suite Matrimonial" class="room-image">
+                        <img src="<?php echo $url .'public/resources/img/room.matrimonial.jpg'?>" alt="Suite Matrimonial" class="room-image">
                         <div class="room-info">
                             <h3>Suite Matrimonial</h3>
                             <p>Romántica y espaciosa</p>
@@ -127,7 +131,7 @@
                         </div>
                     </div>
                     <div class="room-card" data-category="grupal">
-                        <img src="/placeholder.svg?height=200&width=300&text=Habitación+Familiar" alt="Habitación Familiar" class="room-image">
+                        <img src="<?php echo $url .'public/resources/img/room-grupal.png'?>" alt="Habitación Familiar" class="room-image">
                         <div class="room-info">
                             <h3>Habitación Familiar</h3>
                             <p>Perfecta para grupos o familias</p>
@@ -151,16 +155,20 @@
             <div class="container">
                 <h2>Nuestros Servicios</h2>
                 <div class="service-grid">
-                    <div class="service-card">
-                        <i class="fas fa-wifi"></i>
-                        <h3>Wi-Fi Gratis</h3>
-                        <p>Conexión de alta velocidad en todas las áreas</p>
-                    </div>
-                    <div class="service-card">
-                        <i class="fas fa-utensils"></i>
-                        <h3>Desayuno Incluido</h3>
-                        <p>Buffet variado todas las mañanas</p>
-                    </div>
+                    <a href="tours.php">
+                        <div class="service-card">
+                            <i class="fas fa-wifi"></i>
+                            <h3>Tours</h3>
+                            <p>Conectate con toda la cultura de <strong>Chachapoyas</strong>en un viaje sin igual</p>
+                        </div>
+                    </a>    
+                    <a href="restaurante.php">                    
+                        <div class="service-card">
+                            <i class="fas fa-utensils"></i>
+                            <h3>Menu</h3>
+                            <p>Buffet variado todas las mañanas</p>
+                        </div>
+                    </a>
                     <div class="service-card">
                         <i class="fas fa-dumbbell"></i>
                         <h3>Gimnasio</h3>

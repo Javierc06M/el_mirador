@@ -55,7 +55,7 @@
                         </div>
                     </div>
                     <div class="menu-item" data-category="platos">
-                        <img src="<?php echo $url .'public/resources/img/lomo.jpeg' ?>" alt="Cecina con Tacacho">
+                        <img src="<?php echo $url .'public/resources/img/lomo.jpg' ?>" alt="Cecina con Tacacho">
                         <div class="menu-item-content">
                             <h3>Lomo Saltado</h3>
                             <p>Carne de cerdo seca acompañada de plátano machacado.</p>
