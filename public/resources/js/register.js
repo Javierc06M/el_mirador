@@ -49,4 +49,19 @@ const signUpButton = document.getElementById('signUp');
             if (event.target == modal) {
                 modal.style.display = "none";
             }
-        }
+        };      
+        
+        
+// Función para ocultar el mensaje de éxito o error después de un tiempo
+        function hideMessage(id) {
+            const messageElement = document.getElementById(id);
+                if (messageElement) {
+                    setTimeout(() => {
+                        messageElement.style.display = 'none';
+                    }, 3000); // Tiempo en milisegundos (3 segundos)
+                }
+            }
+        
+     // Llamar a la función para ocultar los mensajes
+    hideMessage('successMessage');
+     hideMessage('errorMessage');

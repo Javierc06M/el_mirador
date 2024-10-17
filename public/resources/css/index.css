@@ -1,9 +1,159 @@
-/* Estilos generales */
-body {
-  font-family: 'Arial', sans-serif;
+/*ETIQUETAS FLOTANTES*/
+.floating-tags {
+  position: fixed;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1000;
+}
+
+.floating-tag {
+  display: block;
+  background-color: #4CAF50;
+  color: white;
+  text-decoration: none;
+  padding: 10px 15px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.floating-tag:hover {
+  background-color: #45a049;
+}
+
+.floating-tag i {
+  margin-right: 5px;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1001;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 10% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  max-width: 600px;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+h2 {
+  color: #4CAF50;
+  margin-bottom: 20px;
+}
+
+.contact-info {
+  list-style-type: none;
+  padding: 0;
+}
+
+.contact-info li {
+  margin-bottom: 10px;
+}
+
+.contact-info i {
+  margin-right: 10px;
+  color: #4CAF50;
+}
+
+.contact-form {
+  margin-top: 20px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.submit-btn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.submit-btn:hover {
+  background-color: #45a049;
+}
+
+.map-container {
+  margin-top: 20px;
+}
+
+.map-placeholder {
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+}
+
+/*FIN DE ETIQUETAS FLOTANTES*/
+
+/*HEADER DE LA PAGINA*/
+
+* {
   margin: 0;
   padding: 0;
-  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    color: #333;
+}
+
+/* Header styles */
+/* Header and Navigation Styles */
+.header {
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
 }
 
 .container {
@@ -12,16 +162,15 @@ body {
   padding: 0 15px;
 }
 
-/* Estilos del header */
 .header-content {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 0;
+  padding: 15px 0;
 }
 
 .logo-img {
-  max-width: 100%;
+  width: 50px;
   height: auto;
 }
 
@@ -31,7 +180,7 @@ body {
 }
 
 .nav-item {
-  margin-left: 1rem;
+  margin-left: 20px;
   text-decoration: none;
   color: #333;
   display: flex;
@@ -39,10 +188,9 @@ body {
 }
 
 .nav-item i {
-  margin-right: 0.5rem;
+  margin-right: 5px;
 }
 
-/* Estilos del menú de usuario */
 .user-item {
   position: relative;
 }
@@ -51,6 +199,11 @@ body {
   display: flex;
   align-items: center;
   cursor: pointer;
+}
+
+.username {
+  margin-left: 10px; /* Aumenta el espacio entre el ícono y el nombre de usuario */
+  font-weight: bold; /* Resalta un poco el nombre */
 }
 
 .dropdown-toggle {
@@ -62,11 +215,13 @@ body {
 .dropdown-content {
   display: none;
   position: absolute;
-  right: 0;
   background-color: #f9f9f9;
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
+  right: 0;
+  top: 100%; /* Asegura que el dropdown se muestre debajo del nombre de usuario */
+  border-radius: 4px; /* Añade un poco de curvatura al dropdown */
 }
 
 .dropdown-content a {
@@ -80,24 +235,8 @@ body {
   background-color: #f1f1f1;
 }
 
-/* Estilos del sidebar */
-.menu-toggle {
-  display: none;
-  background: none;
-  border: none;
-  font-size: 1.5rem;
-  cursor: pointer;
-}
-
-.sidebar-overlay {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  z-index: 998;
+.show {
+  display: block !important; /* Asegura que se muestre cuando se activa */
 }
 
 .sidebar {
@@ -107,417 +246,200 @@ body {
   width: 300px;
   height: 100%;
   background-color: #fff;
-  z-index: 999;
-  transition: right 0.3s ease;
-  overflow-y: auto;
+  box-shadow: -2px 0 5px rgba(0,0,0,0.1);
+  transition: right 0.3s ease-in-out;
+  z-index: 1000;
 }
 
-.sidebar.active {
+.sidebar.open {
   right: 0;
+}
+
+.sidebar-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+  z-index: 999;
 }
 
 .sidebar-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem;
-  border-bottom: 1px solid #e0e0e0;
+  padding: 20px;
+  border-bottom: 1px solid #eee;
 }
 
 .close-sidebar {
   background: none;
   border: none;
-  font-size: 1.5rem;
+  font-size: 24px;
   cursor: pointer;
 }
 
 .sidebar-nav {
-  padding: 1rem;
+  padding: 20px;
 }
 
 .sidebar-item {
   display: block;
-  padding: 0.75rem 1rem;
+  padding: 10px 0;
   color: #333;
   text-decoration: none;
-  transition: background-color 0.2s ease;
 }
 
-.sidebar-item:hover {
-  background-color: #f5f5f5;
+.sidebar-item i {
+  margin-right: 10px;
 }
 
-/* Media queries para responsividad */
+  
+/* Responsive Styles */
 @media (max-width: 768px) {
-  .nav {
+  .nav-item span {
       display: none;
   }
 
   .menu-toggle {
       display: block;
   }
-}
 
-/* Estilos para asegurar que el sidebar sea visible en laptops */
-@media (min-width: 769px) and (max-width: 1024px) {
-  .menu-toggle {
-      display: block;
-  }
-
-  .sidebar {
-      width: 250px;
+  .nav .nav-item:not(.user-item) {
+      display: none;
   }
 }
-
-.nav-item#loginButton {
-  background-color: #007bff;
-  color: white;
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
-  transition: background-color 0.3s ease;
+/*FIN DEL HEADER DE LA PAGINA*/
+.hero-carousel {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
 }
 
-.nav-item#loginButton:hover {
-  background-color: #0056b3;
+.carousel-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
 }
 
-/* Estilos para el menú de usuario y el botón de menú */
-.user-item {
+.carousel-slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
-.menu-toggle {
-  margin-left: 1rem;
-  background: none;
+.carousel-slide.active {
+  opacity: 1;
+}
+
+.carousel-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.carousel-content {
+  position: absolute;
+  text-align: center;
+  color: #fff;
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+  max-width: 80%;
+}
+
+.carousel-content h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+.carousel-content p {
+  font-size: 1.2rem;
+}
+
+.carousel-controls {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+}
+
+.carousel-control {
+  background-color: rgba(255, 255, 255, 0.5);
   border: none;
+  color: #000;
   font-size: 1.5rem;
+  padding: 10px 15px;
   cursor: pointer;
-  color: #333;
-}
-/*ESTILOS PARA LAS ETIQUETAS FLOTANTES*/
-
-.floating-tags {
-    position: fixed;
-    top: 50%;
-    right: 20px;
-    transform: translateY(-50%);
-    z-index: 9999;
-    display: flex;
-    flex-direction: column;
+  transition: background-color 0.3s ease;
+  border-radius: 50%;
 }
 
-.floating-tag {
-    background-color: var(--primary-color);
-    color: white;
-    padding: 12px 18px;
-    margin-bottom: 15px;
-    border-radius: 30px;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.floating-tag:hover {
-    background-color: var(--secondary-color);
-    transform: translateX(-5px);
-}
-
-.floating-tag i {
-    margin-right: 10px;
-    font-size: 1.2em;
-}
-
-.sr-only {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border: 0;
-}
-
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 1001;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0,0,0,0.6);
-    animation: fadeIn 0.3s ease;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
-.modal-content {
-    background-color: #fff;
-    margin: 10% auto;
-    padding: 30px;
-    border-radius: 8px;
-    width: 90%;
-    max-width: 600px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-    animation: slideIn 0.3s ease;
-}
-
-@keyframes slideIn {
-    from { transform: translateY(-50px); opacity: 0; }
-    to { transform: translateY(0); opacity: 1; }
-}
-
-.close {
-    color: var(--secondary-color);
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-    transition: color 0.3s ease;
-}
-
-.close:hover,
-.close:focus {
-    color: var(--accent-color);
-    text-decoration: none;
-    cursor: pointer;
-}
-
-.modal-content h2 {
-    color: var(--primary-color);
-    margin-top: 0;
-}
-
-.contact-form {
-    display: flex;
-    flex-direction: column;
-}
-
-.form-group {
-    margin-bottom: 20px;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 8px;
-    color: var(--secondary-color);
-    font-weight: bold;
-}
-
-.form-group input,
-.form-group textarea {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 16px;
-    transition: border-color 0.3s ease;
-}
-
-.form-group input:focus,
-.form-group textarea:focus {
-    border-color: var(--primary-color);
-    outline: none;
-}
-
-.submit-btn {
-    background-color: var(--primary-color);
-    color: white;
-    border: none;
-    padding: 12px 20px;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    font-size: 16px;
-    font-weight: bold;
-}
-
-.submit-btn:hover {
-    background-color: var(--secondary-color);
-}
-
-.contact-info {
-    margin-bottom: 20px;
-}
-
-.contact-info li {
-    margin-bottom: 10px;
-    display: flex;
-    align-items: center;
-}
-
-.contact-info i {
-    margin-right: 10px;
-    color: var(--primary-color);
-}
-
-/*ESTILOS PARA LA SECCION DE BUSQUEDA DE HABITACIONES*/
-
-.hero {
-    background-image: url('../img/fondo.png');
-    background-size: cover;
-    background-position: center;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 0 20px;
-    color: #ffffff;
-}
-
-.hero h1 {
-    font-size: 3.5rem;
-    font-weight: 700;
-    margin-bottom: 1rem;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    animation: fadeInDown 1s ease-out;
-}
-
-.hero p {
-    font-size: 1.5rem;
-    margin-bottom: 2rem;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-    animation: fadeInUp 1s ease-out 0.5s;
-    animation-fill-mode: both;
-}
-
-.search-box {
-    background-color: rgba(255, 255, 255, 0.9);
-    border-radius: 10px;
-    padding: 20px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 15px;
-    max-width: 800px;
-    width: 100%;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-    animation: fadeIn 1s ease-out 1s;
-    animation-fill-mode: both;
-}
-
-.search-item {
-    flex: 1 1 200px;
-    display: flex;
-    align-items: center;
-    background-color: #ffffff;
-    border-radius: 5px;
-    overflow: hidden;
-    transition: all 0.3s ease;
-}
-
-.search-item:hover {
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.search-item i {
-    padding: 10px;
-    background-color: #f0f0f0;
-    color: #333;
-}
-
-.search-item input,
-.search-item select {
-    flex-grow: 1;
-    padding: 10px;
-    border: none;
-    font-size: 1rem;
-    color: #333;
-}
-
-.search-item input:focus,
-.search-item select:focus {
-    outline: none;
-    background-color: #f9f9f9;
-}
-
-.search-button {
-    flex: 1 1 100%;
-    padding: 12px 20px;
-    background-color: #007bff;
-    color: #ffffff;
-    border: none;
-    border-radius: 5px;
-    font-size: 1.1rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.search-button:hover {
-    background-color: #0056b3;
-}
-
-@keyframes fadeInDown {
-    from {
-        opacity: 0;
-        transform: translateY(-20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
+.carousel-control:hover {
+  background-color: rgba(255, 255, 255, 0.8);
 }
 
 @media (max-width: 768px) {
-    .hero h1 {
-        font-size: 2.5rem;
-    }
+  .carousel-content h1 {
+    font-size: 1.8rem;
+  }
 
-    .hero p {
-        font-size: 1.2rem;
-    }
+  .carousel-content p {
+    font-size: 1rem;
+  }
 
-    .search-box {
-        flex-direction: column;
-        align-items: stretch;
-    }
+  .carousel-control {
+    font-size: 1.2rem;
+    padding: 8px 12px;
+  }
+}
 
-    .search-item {
-        flex: 1 1 auto;
-    }
+@media (max-width: 480px) {
+  .carousel-content h1 {
+    font-size: 1.5rem;
+  }
+
+  .carousel-content p {
+    font-size: 0.9rem;
+  }
+
+  .carousel-control {
+    font-size: 1rem;
+    padding: 6px 10px;
+  }
+}
+/* FIN DEL HERO SECTION */
+
+/*ROOM CARDS*/
+
+.section {
+  padding: 4rem 0;
+  background-color: #f8f9fa;
 }
 
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 0 15px;
 }
 
 .section-title {
   font-size: 2.5rem;
   text-align: center;
   margin-bottom: 2rem;
-  color: var(--primary-color);
+  color: #333;
 }
 
 .filter-section {
@@ -530,19 +452,16 @@ body {
 
 .filter-btn {
   padding: 0.5rem 1rem;
-  background-color: var(--card-bg);
-  border: 2px solid var(--primary-color);
-  color: var(--primary-color);
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
   cursor: pointer;
   transition: all 0.3s ease;
-  font-weight: bold;
-  border-radius: 5px;
 }
 
-.filter-btn.active,
-.filter-btn:hover {
-  background-color: var(--primary-color);
-  color: var(--card-bg);
+.filter-btn:hover, .filter-btn.active {
+  background-color: #007bff;
+  color: #fff;
 }
 
 .price-filter {
@@ -561,45 +480,42 @@ body {
 .price-filter input {
   padding: 0.5rem;
   border: 1px solid #ddd;
-  border-radius: 5px;
-  width: 120px;
+  border-radius: 4px;
 }
 
 .price-filter button {
   padding: 0.5rem 1rem;
-  background-color: var(--secondary-color);
-  color: var(--card-bg);
+  background-color: #007bff;
+  color: #fff;
   border: none;
-  border-radius: 5px;
+  border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  font-weight: bold;
 }
 
 .price-filter button:hover {
-  background-color: #27ae60;
+  background-color: #0056b3;
 }
 
 .room-cards {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 2rem;
 }
 
 .room-card {
-  background-color: var(--card-bg);
-  border-radius: 10px;
-  overflow: hidden;
+  background-color: #fff;
+  border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+  transition: transform 0.3s ease;
 }
 
 .room-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
-.room-card img {
+.card-img {
   width: 100%;
   height: 200px;
   object-fit: cover;
@@ -609,72 +525,291 @@ body {
   padding: 1.5rem;
 }
 
-.room-card h2 {
+.room-card-content h2 {
   font-size: 1.5rem;
   margin-bottom: 1rem;
-  color: var(--primary-color);
+  color: #333;
 }
 
-.room-card p {
+.room-card-content p {
+  color: #666;
   margin-bottom: 1rem;
-  color: var(--text-color);
 }
 
-.room-card ul {
+.room-card-content ul {
   list-style-type: none;
+  padding: 0;
   margin-bottom: 1rem;
 }
 
-.room-card li {
+.room-card-content li {
   margin-bottom: 0.5rem;
   display: flex;
   align-items: center;
 }
 
-.room-card li i {
+.room-card-content li i {
   margin-right: 0.5rem;
-  color: var(--primary-color);
+  color: #007bff;
 }
 
-.room-card .price {
+.price {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 1rem;
 }
 
-.room-card .price span {
-  font-size: 1.2rem;
+.price span {
+  font-size: 1.25rem;
   font-weight: bold;
-  color: var(--secondary-color);
+  color: #28a745;
 }
 
 .book-now {
   padding: 0.5rem 1rem;
-  background-color: var(--primary-color);
-  color: var(--card-bg);
+  background-color: #28a745;
+  color: #fff;
   border: none;
-  border-radius: 5px;
+  border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  font-weight: bold;
 }
 
 .book-now:hover {
-  background-color: #2980b9;
+  background-color: #218838;
 }
 
 @media (max-width: 768px) {
-  .room-cards {
-      grid-template-columns: 1fr;
+  .section-title {
+      font-size: 2rem;
   }
 
-  .price-filter {
-      flex-direction: column;
-      align-items: stretch;
+  .room-card-content h2 {
+      font-size: 1.25rem;
   }
 
-  .price-filter input {
-      width: 100%;
+  .price span {
+      font-size: 1rem;
+  }
+
+  .book-now {
+      padding: 0.4rem 0.8rem;
+      font-size: 0.9rem;
   }
 }
+
+/*FINISH ROOM CARD*/
+
+/*SECTION RESTAURANTE*/
+
+.section {
+  padding: 4rem 0;
+  background-color: #f9f9f9;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.section-subtitle {
+  font-size: 1.2rem;
+  text-align: center;
+  margin-bottom: 3rem;
+  color: #666;
+}
+
+.restaurant-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.restaurant-card {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.restaurant-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.card-img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.restaurant-card-content {
+  padding: 1.5rem;
+}
+
+.card-title {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.card-description {
+  color: #666;
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.card-button {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background-color: #007bff;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.card-button:hover {
+  background-color: #0056b3;
+}
+
+@media (max-width: 768px) {
+  .section-title {
+      font-size: 2rem;
+  }
+
+  .section-subtitle {
+      font-size: 1rem;
+  }
+
+  .restaurant-cards {
+      grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .section-title {
+      font-size: 1.75rem;
+  }
+
+  .card-title {
+      font-size: 1.25rem;
+  }
+
+  .card-description {
+      font-size: 0.9rem;
+  }
+
+  .card-button {
+      padding: 0.6rem 1.2rem;
+      font-size: 0.9rem;
+  }
+}
+
+/*FINISH RESTAURANTE*/
+
+/*SECTION TOURS*/
+
+/* Services Section Styles */
+.section {
+  padding: 4rem 0;
+  background-color: #f8f9fa;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.section-subtitle {
+  font-size: 1.2rem;
+  text-align: center;
+  margin-bottom: 3rem;
+  color: #666;
+}
+
+.services-container {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+}
+
+.services-container::-webkit-scrollbar {
+  display: none; /* WebKit */
+}
+
+.slider-card {
+  flex: 0 0 auto;
+  width: 300px;
+  margin-right: 20px;
+  scroll-snap-align: start;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.card-img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.restaurant-card-content {
+  padding: 1.5rem;
+}
+
+.card-title {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.card-description {
+  color: #666;
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.card-button {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background-color: #007bff;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.card-button:hover {
+  background-color: #0056b3;
+}
+
+@media (max-width: 768px) {
+  .slider-card {
+      width: 250px;
+  }
+
+  .section-title {
+      font-size: 2rem;
+  }
+
+  .section-subtitle {
+      font-size: 1rem;
+  }
+}
+/*FINISH TOURS*/

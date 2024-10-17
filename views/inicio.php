@@ -8,10 +8,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inicio</title>
-    <link rel="stylesheet" href="<?php echo $url .'public/resources/css/index.css'?>">
-    <link rel="stylesheet" href="<?php echo $url .'public/resources/css/desplegable.css'?>">
-    <link rel="stylesheet" href="<?php echo $url .'public/resources/css/services.css'?>">
+    <link rel="stylesheet" href="<?php echo $url.'public/resources/css/index.css?v='.time()?>">
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <style>
+    </style>
 </head>
 <body>
 
@@ -28,23 +28,30 @@
             <span class="sr-only">Formulario de contacto</span>
         </a>
     </div>
-
     <header>
-        <div class="container">
-            <div class="header-content">
-                <div class="logo">
-                    <img src="logo.png" alt="Hospedaje El Mirador" class="logo-img" width="50" height="50">
-                </div>
+    <div class="container">
+        <div class="header-content">
+            <div class="logo">
+                <img src="logo.png" alt="Hospedaje El Mirador" class="logo-img" width="50" height="50">
+            </div>
+            
+            <nav class="nav">
+                <a href="#" class="nav-item"><i class="fas fa-heart"></i> <span>Favoritos</span></a>
+                <a href="#" class="nav-item"><i class="fas fa-globe"></i> <span>ES · S/.</span></a>
                 
-                <nav class="nav">
-                    <a href="#" class="nav-item"><i class="fas fa-heart"></i> <span>Favoritos</span></a>
-                    <a href="#" class="nav-item"><i class="fas fa-globe"></i> <span>ES · S/.</span></a>
-                    
-                    <?php if (isset($_SESSION['usuario'])): ?>
-                        <div class="nav-item user-item">
+                <div id="userSection">
+                    <?php 
+                    session_start();
+                    if (!isset($_SESSION['user_id'])): ?>
+                        <a href="<?php echo $url .'views/login-register.php' ?>" class="nav-item" id="loginButton"><i class="fas fa-user"></i> <span>Iniciar sesión</span></a>
+                    <?php else: ?>
+                        <div class="nav-item user-item" id="userMenu">
                             <div class="user-info" id="userDropdown">
                                 <i class="fas fa-user-circle"></i>
-                                <span class="username"><?php echo htmlspecialchars($_SESSION['usuario']); ?></span>
+                                <!-- Mostrar el nombre de usuario -->
+                                <span class="username" id="usernameDisplay">
+                                    <?php echo htmlspecialchars($_SESSION['usuario']); ?>
+                                </span>
                                 <button class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">
                                     <span class="sr-only">Toggle user menu</span>
                                     <i class="fas fa-chevron-down"></i>
@@ -55,60 +62,65 @@
                                 <a href="logout.php">Cerrar sesión</a>
                             </div>
                         </div>
+                        
                         <button id="menu-toggle" class="menu-toggle" aria-label="Abrir menú">
                             <i class="fas fa-bars"></i>
                         </button>
-                    <?php else: ?>
-                        <a href="<?php echo $url .'views/login-register.php' ?>" class="nav-item" id="loginButton"><i class="fas fa-user"></i> <span>Iniciar sesión</span></a>
                     <?php endif; ?>
-                </nav>
-            </div>
-        </div>
-
-        <div class="sidebar-overlay" id="sidebarOverlay"></div>
-        <div class="sidebar" id="sidebar">
-            <div class="sidebar-header">
-                <h2>Menú Principal</h2>
-                <button class="close-sidebar" id="closeSidebar" aria-label="Cerrar menú">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-            <nav class="sidebar-nav">
-                <a href="#" class="sidebar-item"><i class="fas fa-home"></i> Inicio</a>
-                <a href="#" class="sidebar-item"><i class="fas fa-hotel"></i> Habitaciones</a>
-                <a href="restaurante.php" class="sidebar-item"><i class="fas fa-utensils"></i> Restaurante</a>
-                <a href="tours.php" class="sidebar-item"><i class="fas fa-spa"></i> Servicios</a>
-                <a href="#" class="sidebar-item"><i class="fas fa-info-circle"></i> Acerca de</a>
+                </div>
             </nav>
         </div>
-    </header>
+    </div>
 
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h2>Menú Principal</h2>
+            <button class="close-sidebar" id="closeSidebar" aria-label="Cerrar menú">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="#" class="sidebar-item"><i class="fas fa-home"></i> Inicio</a>
+            <a href="#" class="sidebar-item"><i class="fas fa-hotel"></i> Habitaciones</a>
+            <a href="restaurante.php" class="sidebar-item"><i class="fas fa-utensils"></i> Restaurante</a>
+            <a href="tours.php" class="sidebar-item"><i class="fas fa-spa"></i> Servicios</a>
+            <a href="#" class="sidebar-item"><i class="fas fa-info-circle"></i> Acerca de</a>
+        </nav>
+    </div>
+</header>
 
-    <section class="hero">
-        <h1>La Mejor Estancia Siempre A Tu Disposicion</h1>
-        <p>Nosotros hacemos la búsqueda. Tú ahorras.</p>
+    <section class="hero-carousel">
+        <div class="carousel-container">
+            <div class="carousel-slide active">
+                <img src="<?php echo $url .'public/resources/img/chacha.jpeg' ?>" alt="Hotel Image 1">
+                <div class="carousel-content">
+                    <h1>La Mejor Estancia Siempre A Tu Disposición</h1>
+                    <p>Nosotros hacemos la búsqueda. Tú ahorras.</p>
+                </div>
+            </div>
+            <div class="carousel-slide">
+                <img src="<?php echo $url .'public/resources/img/fondo.png' ?>" alt="Hotel Image 2">
+                <div class="carousel-content">
+                    <h1>Descubre el Confort y la Elegancia</h1>
+                    <p>Experimenta una estadía inolvidable con nosotros.</p>
+                </div>
+            </div>
+            <div class="carousel-slide">
+                <img src="<?php echo $url .'public/resources/img/chacha1.png' ?>" alt="Hotel Image 3">
+                <div class="carousel-content">
+                    <h1>Vive Momentos Únicos</h1>
+                    <p>Crea recuerdos que durarán toda la vida.</p>
+                </div>
+            </div>
+        </div>
 
-        <div class="search-box">
-            <div class="search-item">
-                <i class="fas fa-calendar-alt"></i>
-                <input type="text" placeholder="Entrada -- / -- / --">
-            </div>
-            <div class="search-item">
-                <i class="fas fa-calendar-alt"></i>
-                <input type="text" placeholder="Salida -- / -- / --">
-            </div>
-            <div class="search-item">
-                <i class="fas fa-user-friends"></i>
-                <select class="tipo" value="" name="" id="">
-                    <option value="Grupal">Grupal</option>
-                    <option value="Simple">Simple</option>
-                    <option value="Doble">Doble</option>
-                    <option value="Matrimonial">Matrimonial</option>
-                </select>
-            </div>
-            <button class="search-button">Buscar</button>
+        <div class="carousel-controls">
+            <button class="carousel-control prev">&lt;</button>
+            <button class="carousel-control next">&gt;</button>
         </div>
     </section>
+
 
     <main>
         <!-- Sección de filtros -->
@@ -212,14 +224,16 @@
                 
                 <p class="section-subtitle">Descubre sabores únicos en nuestros restaurantes de clase mundial</p>
                 <div class="restaurant-cards">
-                    <div class="restaurant-card">
-                        <img src="../public/resources/img/restaurante.jpeg" alt="Restaurante El Mirador" class="card-img">
-                        <div class="restaurant-card-content">
-                            <h3 class="card-title">El Mirador</h3>
-                            <p class="card-description">Disfrute de una cocina gourmet con vistas panorámicas de la ciudad. Nuestra carta fusiona sabores locales con técnicas internacionales.</p>
-                            <a href="#" class="card-button">Explorar Menú</a>
+                        <div class="restaurant-card">
+                            <a href="<?php echo $url .'views/restaurante.php' ?>">
+                                <img src="../public/resources/img/restaurante.jpeg" alt="Restaurante El Mirador" class="card-img">
+                                <div class="restaurant-card-content">
+                                    <h3 class="card-title">El Mirador</h3>
+                                    <p class="card-description">Disfrute de una cocina gourmet con vistas panorámicas de la ciudad. Nuestra carta fusiona sabores locales con técnicas internacionales.</p>
+                                    <a href="#" class="card-button">Explorar Menú</a>
+                                </div>
+                            </a>
                         </div>
-                    </div>
                     <div class="restaurant-card">
                         <img src="../public/resources/img/coffe.jpeg" alt="Café del Sol" class="card-img">
                         <div class="restaurant-card-content">
@@ -240,38 +254,33 @@
             </div>
         </section>
 
-        <!-- Sección de servicios y tours -->
         <section id="services" class="section">
             <div class="container">
                 <h2 class="section-title">Servicios y Tours</h2>
                 <p class="section-subtitle">Vive experiencias inolvidables durante tu estancia</p>
-                <div class="slider">
-                    <button class="slider-button prev">&#10094;</button>
-                    <button class="slider-button next">&#10095;</button>
-                    <div class="slider-container">
-                        <div class="slider-card">
-                            <img src="../public/resources/img/chachapoyas.jpg" alt="Tour por la ciudad" class="card-img">
-                            <div class="restaurant-card-content">
-                                <h3 class="card-title">Tour por la Ciudad</h3>
-                                <p class="card-description">Descubra los secretos y la historia de Chachapoyas con nuestros guías expertos. Una experiencia cultural enriquecedora.</p>
-                                <a href="#" class="card-button">Reservar Ahora</a>
-                            </div>
+                <div class="services-container">
+                    <div class="slider-card">
+                        <img src="../public/resources/img/chachapoyas.png" alt="Tour por la ciudad" class="card-img">
+                        <div class="restaurant-card-content">
+                            <h3 class="card-title">Tour por la Ciudad</h3>
+                            <p class="card-description">Descubra los secretos y la historia de Chachapoyas con nuestros guías expertos. Una experiencia cultural enriquecedora.</p>
+                            <a href="#" class="card-button">Reservar Ahora</a>
                         </div>
-                        <div class="slider-card">
-                            <img src="../public/resources/img/kuelap.jpeg" alt="Excursión a Kuelap" class="card-img">
-                            <div class="restaurant-card-content">
-                                <h3 class="card-title">Excursión a Kuelap</h3>
-                                <p class="card-description">Visite la impresionante fortaleza de Kuelap, conocida como el "Machu Picchu del norte". Una maravilla arqueológica que no puede perderse.</p>
-                                <a href="#" class="card-button">Más Información</a>
-                            </div>
+                    </div>
+                    <div class="slider-card">
+                        <img src="../public/resources/img/kuelap.jpeg" alt="Excursión a Kuelap" class="card-img">
+                        <div class="restaurant-card-content">
+                            <h3 class="card-title">Excursión a Kuelap</h3>
+                            <p class="card-description">Visite la impresionante fortaleza de Kuelap, conocida como el "Machu Picchu del norte". Una maravilla arqueológica que no puede perderse.</p>
+                            <a href="#" class="card-button">Más Información</a>
                         </div>
-                        <div class="slider-card">
-                            <img src="../public/resources/img/gocta.jpeg" alt="Catarata de Gocta" class="card-img">
-                            <div class="restaurant-card-content">
-                                <h3 class="card-title">Catarata de Gocta</h3>
-                                <p class="card-description">Aventúrese a una de las cataratas más altas del mundo. Una experiencia de senderismo y naturaleza inolvidable.</p>
-                                <a href="#" class="card-button">Planear Aventura</a>
-                            </div>
+                    </div>
+                    <div class="slider-card">
+                        <img src="../public/resources/img/gocta.jpeg" alt="Catarata de Gocta" class="card-img">
+                        <div class="restaurant-card-content">
+                            <h3 class="card-title">Catarata de Gocta</h3>
+                            <p class="card-description">Aventúrese a una de las cataratas más altas del mundo. Una experiencia de senderismo y naturaleza inolvidable.</p>
+                            <a href="#" class="card-button">Planear Aventura</a>
                         </div>
                     </div>
                 </div>
@@ -279,26 +288,33 @@
         </section>
     </main>
 
-     <!-- Modal para "¿Cómo llegar?" -->
-     <div id="how-to-arrive-modal" class="modal">
+    <div id="how-to-arrive-modal" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
             <h2>¿Cómo llegar?</h2>
-            <p>Aquí puedes incluir las instrucciones para llegar al hotel o un mapa interactivo.</p>
-            <!-- Puedes agregar un mapa de Google aquí si lo deseas -->
+            <p>Estamos ubicados en el corazón de Chachapoyas, Perú. Sigue estas instrucciones:</p>
+            <ol>
+                <li>Desde el aeropuerto de Chachapoyas, toma un taxi hacia el centro de la ciudad.</li>
+                <li>Pide al conductor que te lleve a la Plaza de Armas.</li>
+                <li>Desde allí, camina dos cuadras hacia el norte.</li>
+                <li>Verás nuestro letrero "Hospedaje El Mirador" a tu derecha.</li>
+            </ol>
+            <div class="map-container">
+                <!-- Aquí puedes insertar un mapa de Google Maps -->
+                <img src="https://via.placeholder.com/600x300" alt="Mapa de ubicación" class="map-placeholder">
+            </div>
         </div>
     </div>
 
-    <!-- Modal para "Contáctanos" -->
     <div id="contact-us-modal" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
             <h2>Contáctanos</h2>
-            <p>Puedes contactarnos a través de los siguientes medios o utilizar el formulario a continuación:</p>
-            <ul>
+            <p>Estamos aquí para ayudarte. Contáctanos a través de los siguientes medios:</p>
+            <ul class="contact-info">
                 <li><i class="fas fa-phone"></i> +51 123 456 789</li>
                 <li><i class="fas fa-envelope"></i> info@hospedajeelmirador.com</li>
-                <li><i class="fas fa-map-marker-alt"></i> CHACHAPOYAS</li>
+                <li><i class="fas fa-map-marker-alt"></i> Av. Principal 123, Chachapoyas, Perú</li>
             </ul>
             <form id="contact-form" class="contact-form">
                 <div class="form-group">
@@ -318,12 +334,9 @@
         </div>
     </div>
 
+
     
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-        <script src="<?php echo $url .'public/resources/js/index.js' ?>"></script>
-        <script src="<?php echo $url .'public/resources/js/desplegable-user.js' ?>"></script>
-        <script src="<?php echo $url .'public/resources/js/precio.js' ?>"></script>
-        <script src="<?php echo $url .'public/resources/js/services.js' ?>"></script>
-        <script src="<?php echo $url .'public/resources/js/menu.js' ?>"></script>
+    <script src="<?php echo $url .'public/resources/js/index.js?v='.time()?>"></script>
 </body>
 </html>

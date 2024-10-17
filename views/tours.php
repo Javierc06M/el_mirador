@@ -1,9 +1,13 @@
+<?php
+    include '../config/app.php';
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Descubre Perú - Tours y Aventuras</title>
+    <title>Descubre Amazonas - Tours y Aventuras</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="<?php echo $url .'public/resources/css/tours.css' ?>">
 </head>

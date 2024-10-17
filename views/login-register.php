@@ -1,9 +1,15 @@
+<?php
+
+    include '../config/app.php';
+
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../public/resources/css/register.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="<?php echo $url .'public/resources/css/register.css?v='. time(); ?>">
     <title>Login / Registro</title>
 </head>
 <body>
@@ -42,7 +48,7 @@
         </div>
         
         <div class="form-container sign-in-container">
-            <form id="signInForm" action="../public/resources/php/loginuser.php" method="POST">
+            <form id="signInForm" action="<?php echo $url .'public/resources/php/loginuser.php' ?>" method="POST">
                 <h1>Iniciar Sesión</h1>
                 <input type="email" name="correo" placeholder="Email" id="signInEmail" required />
                 <div class="input-group">
@@ -74,60 +80,6 @@
         </div>
     </div>
 
-    <script src="../public/resources/js/register.js?v= <?php echo time(); ?>"></script>
-
-    <style>
-        .success-message {
-            background-color: #d4edda;
-            color: #155724;
-            padding: 10px;
-            margin: 15px 0;
-            border: 1px solid #c3e6cb;
-            border-radius: 5px;
-            position: absolute; /* Para superponer */
-            top: 20px; /* Ajustar según sea necesario */
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 1000; /* Asegurar que esté encima de otros elementos */
-            animation: fade-in-out 3s; /* Animación */
-        }
-
-        .error-message {
-            background-color: #f8d7da;
-            color: #721c24;
-            padding: 10px;
-            margin: 15px 0;
-            border: 1px solid #f5c6cb;
-            border-radius: 5px;
-            position: absolute; /* Para superponer */
-            top: 70px; /* Ajustar según sea necesario */
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 1000; /* Asegurar que esté encima de otros elementos */
-        }
-
-        @keyframes fade-in-out {
-            0% { opacity: 0; }
-            10% { opacity: 1; }
-            90% { opacity: 1; }
-            100% { opacity: 0; }
-        }
-    </style>
-
-    <script>
-        // Función para ocultar el mensaje de éxito o error después de un tiempo
-        function hideMessage(id) {
-            const messageElement = document.getElementById(id);
-            if (messageElement) {
-                setTimeout(() => {
-                    messageElement.style.display = 'none';
-                }, 3000); // Tiempo en milisegundos (3 segundos)
-            }
-        }
-
-        // Llamar a la función para ocultar los mensajes
-        hideMessage('successMessage');
-        hideMessage('errorMessage');
-    </script>
+    <script src="<?php echo $url .'public/resources/js/register.js?v='.time(); ?>"></script>
 </body>
 </html>

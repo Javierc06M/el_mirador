@@ -1,4 +1,5 @@
 <?php
+include '../../../config/app.php';
 session_start(); // Iniciar la sesión
 
 // Verificar si el usuario ha iniciado sesión
