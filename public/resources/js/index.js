@@ -56,49 +56,96 @@
 
 // HEADER 
 document.addEventListener('DOMContentLoaded', function() {
-    const userDropdown = document.getElementById('userDropdown');
-    const userDropdownContent = document.getElementById('userDropdownContent');
-    const menuToggle = document.getElementById('menu-toggle');
-    const sidebar = document.getElementById('sidebar');
-    const closeSidebar = document.getElementById('closeSidebar');
-    const sidebarOverlay = document.getElementById('sidebarOverlay');
+    const menuToggle = document.querySelector('.menu-toggle');
+    const sidebar = document.querySelector('.sidebar');
+    const closeSidebar = document.querySelector('.close-sidebar');
+    const sidebarOverlay = document.querySelector('.sidebar-overlay');
+    const userInfo = document.querySelector('.user-info');
+    const dropdownContent = document.querySelector('.dropdown-content');
 
-    if (userDropdown) {
-        userDropdown.addEventListener('click', function() {
-            userDropdownContent.classList.toggle('show');
-        });
+    function toggleSidebar() {
+        sidebar.classList.toggle('active');
+        sidebarOverlay.style.display = sidebar.classList.contains('active') ? 'block' : 'none';
+        document.body.style.overflow = sidebar.classList.contains('active') ? 'hidden' : '';
     }
 
-    // Cerrar el menú desplegable si se hace clic fuera de él
-    window.addEventListener('click', function(e) {
-        if (!e.target.matches('.user-info, .user-info *')) {
-            if (userDropdownContent) {
-                userDropdownContent.classList.remove('show');
-            }
-        }
+    function toggleDropdown(event) {
+        event.stopPropagation();
+        dropdownContent.style.display = dropdownContent.style.display === 'block' ? 'none' : 'block';
+    }
+
+    menuToggle.addEventListener('click', toggleSidebar);
+    closeSidebar.addEventListener('click', toggleSidebar);
+    sidebarOverlay.addEventListener('click', toggleSidebar);
+    userInfo.addEventListener('click', toggleDropdown);
+
+    document.addEventListener('click', function() {
+        dropdownContent.style.display = 'none';
     });
 
-    // Manejar la apertura y cierre del sidebar
-    if (menuToggle) {
-        menuToggle.addEventListener('click', function() {
-            sidebar.classList.add('open');
-            sidebarOverlay.style.display = 'block';
-        });
-    }
-
-    if (closeSidebar) {
-        closeSidebar.addEventListener('click', closeSidebarFunction);
-    }
-
-    if (sidebarOverlay) {
-        sidebarOverlay.addEventListener('click', closeSidebarFunction);
-    }
-
-    function closeSidebarFunction() {
-        sidebar.classList.remove('open');
-        sidebarOverlay.style.display = 'none';
-    }
+    window.addEventListener('resize', function() {
+        if (window.innerWidth > 768) {
+            sidebar.classList.remove('active');
+            sidebarOverlay.style.display = 'none';
+            document.body.style.overflow = '';
+        }
+    });
 });
+
+//HERO SECTION
+
+document.addEventListener('DOMContentLoaded', function() {
+    const slides = document.querySelectorAll('.carousel-slide');
+    const prevButton = document.querySelector('.carousel-control.prev');
+    const nextButton = document.querySelector('.carousel-control.next');
+    let currentSlide = 0;
+    const totalSlides = slides.length;
+    let slideInterval;
+
+    function showSlide(index) {
+        slides[currentSlide].classList.remove('active');
+        slides[index].classList.add('active');
+        currentSlide = index;
+    }
+
+    function nextSlide() {
+        showSlide((currentSlide + 1) % totalSlides);
+    }
+
+    function prevSlide() {
+        showSlide((currentSlide - 1 + totalSlides) % totalSlides);
+    }
+
+    function startSlideShow() {
+        slideInterval = setInterval(nextSlide, 5000); // Change slide every 5 seconds
+    }
+
+    function stopSlideShow() {
+        clearInterval(slideInterval);
+    }
+
+    prevButton.addEventListener('click', () => {
+        prevSlide();
+        stopSlideShow();
+        startSlideShow();
+    });
+
+    nextButton.addEventListener('click', () => {
+        nextSlide();
+        stopSlideShow();
+        startSlideShow();
+    });
+
+    // Start the slideshow
+    startSlideShow();
+
+    // Pause slideshow when hovering over the carousel
+    const carousel = document.querySelector('.hero-carousel');
+    carousel.addEventListener('mouseenter', stopSlideShow);
+    carousel.addEventListener('mouseleave', startSlideShow);
+});
+
+
 // TOGGLE BOTON MENU
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -366,48 +413,58 @@ document.addEventListener('DOMContentLoaded', () => {
     const sidebarContent = document.querySelector('.sidebar-content');
     const sliderCards = document.querySelectorAll('.slider-card');
 
-    // Clone items to ensure seamless rotation
+    // Clonar items para asegurar rotación continua
     sliderCards.forEach(card => {
         const clone = card.cloneNode(true);
         sidebarContent.appendChild(clone);
     });
 
-    // Adjust rotation speed based on content height
+    // Función para ajustar la velocidad de rotación basada en la altura del contenido
     function adjustRotationSpeed() {
-        const contentHeight = sidebarContent.scrollHeight / 2; // Divide by 2 because we doubled the content
-        const rotationDuration = contentHeight / 30; // Adjust 30 to change speed
+        const contentHeight = sidebarContent.scrollHeight; // Usar la altura completa del contenido
+        const rotationDuration = contentHeight / 30; // Ajustar '30' para cambiar la velocidad
         sidebarContent.style.animation = `rotate ${rotationDuration}s linear infinite`;
     }
 
-    // Call on load and resize
+    // Llamar a la función en la carga y al redimensionar
     adjustRotationSpeed();
     window.addEventListener('resize', adjustRotationSpeed);
 
-    // Pause rotation on hover
+    // Pausar rotación al pasar el mouse
     sidebarContent.addEventListener('mouseenter', () => {
         sidebarContent.style.animationPlayState = 'paused';
     });
 
+    // Reanudar rotación al quitar el mouse
     sidebarContent.addEventListener('mouseleave', () => {
         sidebarContent.style.animationPlayState = 'running';
     });
 
-    // Touch events for mobile devices
+    // Eventos de toque para dispositivos móviles
     let touchStartY = 0;
     let touchEndY = 0;
+    let isScrolling = false;
 
     sidebarContent.addEventListener('touchstart', (e) => {
         touchStartY = e.touches[0].clientY;
         sidebarContent.style.animationPlayState = 'paused';
+        isScrolling = false;
+    });
+
+    sidebarContent.addEventListener('touchmove', (e) => {
+        touchEndY = e.touches[0].clientY;
+        const touchDiff = touchStartY - touchEndY;
+
+        // Ajustar la posición del scroll con base en la dirección del toque
+        sidebarContent.style.transform = `translateY(${-touchDiff}px)`;
+        isScrolling = true;
     });
 
     sidebarContent.addEventListener('touchend', (e) => {
-        touchEndY = e.changedTouches[0].clientY;
-        const touchDiff = touchStartY - touchEndY;
-
-        if (Math.abs(touchDiff) > 50) {
-            // Adjust the scroll position based on touch direction
-            sidebarContent.style.transform = `translateY(${-touchDiff}px)`;
+        if (!isScrolling) {
+            sidebarContent.style.animationPlayState = 'running';
+        } else {
+            // Restablecer después del desplazamiento
             setTimeout(() => {
                 sidebarContent.style.transition = 'none';
                 sidebarContent.style.transform = 'translateY(0)';
@@ -416,9 +473,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     sidebarContent.style.animationPlayState = 'running';
                 }, 50);
             }, 300);
-        } else {
-            sidebarContent.style.animationPlayState = 'running';
         }
     });
 });
+
 // FINISH SECTION TOURS

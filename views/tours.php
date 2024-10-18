@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Descubre Amazonas - Tours y Aventuras</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="<?php echo $url .'public/resources/css/tours.css' ?>">
+    <link rel="stylesheet" href="<?php echo $url .'public/resources/css/tours.css?v='. time(); ?>">
 </head>
 <body>
 <header>
@@ -30,7 +30,7 @@
                 </ul>
             </div>
             <ul class="nav-links">
-                <li><a href="#home">Inicio</a></li>
+                <li><a href="<?php echo $url .'views/inicio.php' ?>">Inicio</a></li>
                 <li><a href="#about">Acerca de</a></li>
                 <li><a href="#services">Servicios</a></li>
                 <li><a href="#contact">Contacto</a></li>
@@ -41,8 +41,8 @@
 
 
     <main>
-        <section class="hero">
-            <div class="hero-content">
+        <section class="hero" >
+            <div class="hero-content" >
                 <h1>Explora las maravillas de CHACHAPOYAS</h1>
                 <p>Vive aventuras inolvidables y descubre los destinos más impresionantes.</p>
                 <a href="#" class="cta-button">Reserva tu Tours</a>

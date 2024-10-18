@@ -9,8 +9,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inicio</title>
     <link rel="stylesheet" href="<?php echo $url.'public/resources/css/index.css?v='.time()?>">
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script src="<? 'https://kit.fontawesome.com/a076d05399.js'. time(); ?>" crossorigin="anonymous"></script>
     <style>
+        
     </style>
 </head>
 <body>
@@ -29,67 +30,50 @@
         </a>
     </div>
     <header>
-    <div class="container">
-        <div class="header-content">
-            <div class="logo">
-                <img src="logo.png" alt="Hospedaje El Mirador" class="logo-img" width="50" height="50">
-            </div>
-            
-            <nav class="nav">
-                <a href="#" class="nav-item"><i class="fas fa-heart"></i> <span>Favoritos</span></a>
-                <a href="#" class="nav-item"><i class="fas fa-globe"></i> <span>ES · S/.</span></a>
-                
-                <div id="userSection">
-                    <?php 
-                    session_start();
-                    if (!isset($_SESSION['user_id'])): ?>
-                        <a href="<?php echo $url .'views/login-register.php' ?>" class="nav-item" id="loginButton"><i class="fas fa-user"></i> <span>Iniciar sesión</span></a>
-                    <?php else: ?>
-                        <div class="nav-item user-item" id="userMenu">
-                            <div class="user-info" id="userDropdown">
-                                <i class="fas fa-user-circle"></i>
-                                <!-- Mostrar el nombre de usuario -->
-                                <span class="username" id="usernameDisplay">
-                                    <?php echo htmlspecialchars($_SESSION['usuario']); ?>
-                                </span>
-                                <button class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">
-                                    <span class="sr-only">Toggle user menu</span>
-                                    <i class="fas fa-chevron-down"></i>
-                                </button>
-                            </div>
-                            <div class="dropdown-content" id="userDropdownContent">
-                                <a href="perfil.php">Perfil</a>
-                                <a href="logout.php">Cerrar sesión</a>
-                            </div>
+        <div class="container">
+            <div class="header-content">
+                <a href="#" class="logo">
+                    <img src="/placeholder.svg?height=40&width=40" alt="Logo" class="logo-img">
+                    <span>El Mirador</span>
+                </a>
+                <nav class="nav">
+                    <a href="#" class="nav-item"><i class="fas fa-home"></i><span>Inicio</span></a>
+                    <a href="<?php echo $url .'views/restaurante.php/'?>" class="nav-item"><i class="fa-solid fa-utensils"></i><span>Restaurante</span></a>
+                    <a href="<?php echo $url .'views/habitaciones.php/' ?>" class="nav-item"><i class="fa-solid fa-bed"></i><span>Habitaciones</span></a>
+                    <a href="#" class="nav-item"><i class="fa-solid fa-person-hiking"></i>Tours</span></a>
+                    <div class="user-item">
+                        <div class="user-info">
+                        <i class="fa-regular fa-user"></i>
+                            <span>Javier Culqui Montoya</span>
                         </div>
-                        
-                        <button id="menu-toggle" class="menu-toggle" aria-label="Abrir menú">
-                            <i class="fas fa-bars"></i>
-                        </button>
-                    <?php endif; ?>
-                </div>
-            </nav>
+                        <div class="dropdown-content">
+                            <a href="<?php echo $url .'views/perfil.php' ?>"><i class="fa-regular fa-user"></i> Profile</a>
+                            <a href="#"><i class="fas fa-cog"></i> Settings</a>
+                            <a href="#"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                        </div>
+                    </div>
+                </nav>
+                <button class="menu-toggle" aria-label="Toggle menu">☰</button>
+            </div>
         </div>
-    </div>
+    </header>
 
-    <div class="sidebar-overlay" id="sidebarOverlay"></div>
-    <div class="sidebar" id="sidebar">
+    <div class="sidebar">
         <div class="sidebar-header">
-            <h2>Menú Principal</h2>
-            <button class="close-sidebar" id="closeSidebar" aria-label="Cerrar menú">
-                <i class="fas fa-times"></i>
-            </button>
+            <h2>Menu</h2>
+            <button class="close-sidebar" aria-label="Close menu">×</button>
         </div>
         <nav class="sidebar-nav">
-            <a href="#" class="sidebar-item"><i class="fas fa-home"></i> Inicio</a>
-            <a href="#" class="sidebar-item"><i class="fas fa-hotel"></i> Habitaciones</a>
-            <a href="restaurante.php" class="sidebar-item"><i class="fas fa-utensils"></i> Restaurante</a>
-            <a href="tours.php" class="sidebar-item"><i class="fas fa-spa"></i> Servicios</a>
-            <a href="#" class="sidebar-item"><i class="fas fa-info-circle"></i> Acerca de</a>
+            <a href="#" class="sidebar-item"><i class="fas fa-"></i> Inicio</a>
+            <a href="#" class="sidebar-item"><i class="fa-solid fa-utensils"></i>Restaurante</a>
+            <a href="#" class="sidebar-item"><i class="fa-solid fa-bed"></i> Habitaciones</a>
+            <a href="#" class="sidebar-item"><i class="fas fa-envelope"></i> Tours</a>
+            <a href="#" class="sidebar-item"><i class="fas fa-user-circle"></i> Profile</a>
+            <a href="#" class="sidebar-item"><i class="fas fa-sign-out-alt"></i> Logout</a>
         </nav>
     </div>
-</header>
 
+    <div class="sidebar-overlay"></div>
     <section class="hero-carousel">
         <div class="carousel-container">
             <div class="carousel-slide active">

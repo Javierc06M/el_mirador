@@ -39,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $_SESSION['usuario'] = $user['usuario']; // Guardar el nombre de usuario en la sesión
             
             // Redirigir al usuario a la página principal o a la cuenta
-            header("Location: $url .'views/inicio.php'"); // Cambia a la ruta deseada
+            header("Location: ../../../views/inicio.php"); // Cambia a la ruta deseada
             exit();
         } else {
             // Contraseña incorrecta

@@ -19,10 +19,9 @@
                 <span class="logo-text">El Mirador</span>
             </div>
             <nav class="desktop-nav">
-                <a href="#inicio" class="nav-link"><i class="fas fa-home"></i> Inicio</a>
+                <a href="<?php echo $url .'public/' ?>" class="nav-link"><i class="fas fa-home"></i> Inicio</a>
                 <a href="#habitaciones" class="nav-link"><i class="fas fa-bed"></i> Habitaciones</a>
-                <a href="#servicios" class="nav-link"><i class="fas fa-concierge-bell"></i> Servicios</a>
-                <a href="#contacto" class="nav-link"><i class="fas fa-envelope"></i> Contacto</a>
+                <a href="<?php echo $url . 'views/tours.php' ?>" class="nav-link"><i class="fas fa-concierge-bell"></i> Tours</a>
                 <button class="login-btn">
                     <i class="fas fa-user"></i> Iniciar Sesión
                 </button>

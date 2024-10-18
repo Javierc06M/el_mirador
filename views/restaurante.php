@@ -20,10 +20,8 @@
                     <h1>El Mirador</h1>
                 </div>
                 <ul class="nav-links">
-                    <li><a href="inicio.php">Inicio</a></li>
-                    <li><a href="#menu">Menú</a></li>
-                    <li><a href="#reservas">Reservas</a></li>
-                    <li><a href="#contacto">Contacto</a></li>
+                    <li><a href="<?php echo $url .'public' ?>">Inicio</a></li>
+                    <li><a href="<?php echo $url .'views/perfil.php' ?>">Perfil</a></li>
                 </ul>
             </nav>
         </div>
