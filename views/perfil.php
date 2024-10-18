@@ -3,931 +3,446 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi Perfil - Hotel Paraíso</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>Mi Perfil - Estilo GitHub</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
     <style>
         :root {
-            --primary-color: #2c3e50;
-            --secondary-color: #3498db;
-            --accent-color: #e74c3c;
-            --background-color: #f4f7f6;
-            --text-color: #34495e;
-            --card-bg: #ffffff;
-            --card-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            --color-canvas-default: #ffffff;
+            --color-canvas-subtle: #f6f8fa;
+            --color-border-default: #d0d7de;
+            --color-fg-default: #24292f;
+            --color-fg-muted: #57606a;
+            --color-accent-fg: #0969da;
+            --color-accent-emphasis: #0969da;
+            --color-success-fg: #1a7f37;
+            --color-danger-fg: #cf222e;
+            --color-btn-primary-bg: #2da44e;
+            --color-btn-primary-hover-bg: #2c974b;
+            --color-btn-primary-text: #ffffff;
         }
 
         * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
         }
 
         body {
-            font-family: 'Poppins', sans-serif;
-            background-color: var(--background-color);
-            color: var(--text-color);
-            line-height: 1.6;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif;
+            font-size: 14px;
+            line-height: 1.5;
+            color: var(--color-fg-default);
+            background-color: var(--color-canvas-default);
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1280px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 16px;
         }
 
         header {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 1rem 0;
-            position: fixed;
-            width: 100%;
-            z-index: 1000;
-            transition: var(--transition);
+            background-color: var(--color-canvas-default);
+            border-bottom: 1px solid var(--color-border-default);
+            padding: 16px 0;
         }
 
-        header.scrolled {
-            background-color: rgba(44, 62, 80, 0.9);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        nav ul {
+        .header-content {
             display: flex;
-            justify-content: flex-end;
-            list-style-type: none;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        nav ul li {
-            margin-left: 1.5rem;
+        .profile-nav {
+            display: flex;
+            gap: 16px;
         }
 
-        nav ul li a {
-            color: white;
+        .profile-nav a {
+            color: var(--color-fg-default);
             text-decoration: none;
-            font-weight: 500;
-            transition: var(--transition);
-            position: relative;
-            padding: 5px 0;
+            font-weight: 600;
+            padding: 8px 16px;
+            border-radius: 6px;
         }
 
-        nav ul li a::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: 0;
-            left: 0;
-            background-color: var(--accent-color);
-            transition: var(--transition);
-        }
-
-        nav ul li a:hover::after {
-            width: 100%;
+        .profile-nav a:hover, .profile-nav a.active {
+            color: var(--color-accent-fg);
+            background-color: var(--color-canvas-subtle);
         }
 
         main {
-            padding: 6rem 0 2rem;
+            padding: 24px 0;
         }
 
-        .profile-grid {
+        .profile-layout {
             display: grid;
             grid-template-columns: 1fr 3fr;
-            gap: 2rem;
+            gap: 24px;
         }
 
         .profile-sidebar {
-            background-color: var(--card-bg);
-            border-radius: 15px;
-            padding: 2rem;
-            box-shadow: var(--card-shadow);
-            position: sticky;
-            top: 100px;
-            height: fit-content;
-            transition: var(--transition);
-        }
-
-        .profile-sidebar:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
-        }
-
-        .profile-picture {
-            width: 180px;
-            height: 180px;
-            border-radius: 50%;
-            margin: 0 auto 1.5rem;
-            overflow: hidden;
-            position: relative;
-            cursor: pointer;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        .profile-picture img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: var(--transition);
-        }
-
-        .profile-picture:hover img {
-            transform: scale(1.1);
-        }
-
-        .profile-picture::after {
-            content: 'Cambiar foto';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background-color: rgba(0, 0, 0, 0.7);
-            color: white;
-            padding: 0.75rem;
-            text-align: center;
-            opacity: 0;
-            transition: var(--transition);
-        }
-
-        .profile-picture:hover::after {
-            opacity: 1;
-        }
-
-        .profile-name {
-            text-align: center;
-            font-size: 1.75rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            color: var(--primary-color);
-        }
-
-        .profile-member-since {
-            text-align: center;
-            color: #7f8c8d;
-            margin-bottom: 1.5rem;
-            font-size: 0.9rem;
-        }
-
-        .tab-buttons {
             display: flex;
             flex-direction: column;
-            gap: 0.75rem;
+            gap: 16px;
         }
 
-        .tab-button {
-            background-color: transparent;
-            border: none;
-            padding: 0.75rem 1rem;
-            text-align: left;
-            font-size: 1rem;
-            font-weight: 500;
-            color: var(--text-color);
-            cursor: pointer;
-            transition: var(--transition);
-            border-radius: 8px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .tab-button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
+        .profile-avatar {
             width: 100%;
-            height: 100%;
-            background-color: var(--secondary-color);
-            transition: var(--transition);
-            z-index: -1;
+            max-width: 296px;
+            border-radius: 50%;
         }
 
-        .tab-button:hover::before, .tab-button.active::before {
-            left: 0;
+        .profile-info h1 {
+            font-size: 24px;
+            font-weight: 600;
+            line-height: 1.25;
+            margin-bottom: 8px;
         }
 
-        .tab-button:hover, .tab-button.active {
-            color: white;
+        .profile-info .username {
+            font-size: 20px;
+            font-weight: 300;
+            line-height: 24px;
+            color: var(--color-fg-muted);
         }
 
-        .profile-content {
-            background-color: var(--card-bg);
-            border-radius: 15px;
-            padding: 2rem;
-            box-shadow: var(--card-shadow);
-            transition: var(--transition);
+        .profile-details {
+            margin-top: 16px;
         }
 
-        .profile-content:hover {
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        .profile-details p {
+            display: flex;
+            align-items: center;
+            margin-bottom: 4px;
+        }
+
+        .profile-details i {
+            margin-right: 8px;
+            width: 16px;
+            color: var(--color-fg-muted);
         }
 
         .tab-content {
+            background-color: var(--color-canvas-subtle);
+            border: 1px solid var(--color-border-default);
+            border-radius: 6px;
+            padding: 16px;
+        }
+
+        .card {
+            background-color: var(--color-canvas-default);
+            border: 1px solid var(--color-border-default);
+            border-radius: 6px;
+            padding: 16px;
+            margin-bottom: 16px;
+        }
+
+        .card h3 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .card-item {
+            padding: 8px 0;
+            border-bottom: 1px solid var(--color-border-default);
+        }
+
+        .card-item:last-child {
+            border-bottom: none;
+        }
+
+        .hidden {
             display: none;
-            opacity: 0;
-            transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
-            transform: translateY(20px);
         }
 
-        .tab-content.active {
-            display: block;
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        h2 {
-            font-size: 2.25rem;
-            margin-bottom: 1.5rem;
-            color: var(--primary-color);
-            position: relative;
+        .btn {
             display: inline-block;
+            padding: 5px 16px;
+            font-size: 14px;
+            font-weight: 500;
+            line-height: 20px;
+            white-space: nowrap;
+            vertical-align: middle;
+            cursor: pointer;
+            user-select: none;
+            border: 1px solid;
+            border-radius: 6px;
+            appearance: none;
+            text-decoration: none;
         }
 
-        h2::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 0;
-            width: 50px;
-            height: 3px;
-            background-color: var(--accent-color);
+        .btn-primary {
+            color: var(--color-btn-primary-text);
+            background-color: var(--color-btn-primary-bg);
+            border-color: var(--color-btn-primary-bg);
         }
 
-        .form-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem;
+        .btn-primary:hover {
+            background-color: var(--color-btn-primary-hover-bg);
+            border-color: var(--color-btn-primary-hover-bg);
+        }
+
+        .edit-form {
+            margin-top: 16px;
         }
 
         .form-group {
-            margin-bottom: 1.5rem;
+            margin-bottom: 16px;
         }
 
-        label {
+        .form-group label {
             display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 500;
-            color: var(--primary-color);
+            margin-bottom: 4px;
+            font-weight: 600;
         }
 
-        input[type="text"],
-        input[type="email"],
-        input[type="tel"] {
+        .form-group input {
             width: 100%;
-            padding: 0.75rem;
-            border: 2px solid #bdc3c7;
-            border-radius: 8px;
-            font-size: 1rem;
-            transition: var(--transition);
-        }
-
-        input[type="text"]:focus,
-        input[type="email"]:focus,
-        input[type="tel"]:focus {
-            border-color: var(--secondary-color);
+            padding: 5px 12px;
+            font-size: 14px;
+            line-height: 20px;
+            color: var(--color-fg-default);
+            background-color: var(--color-canvas-default);
+            background-repeat: no-repeat;
+            background-position: right 8px center;
+            border: 1px solid var(--color-border-default);
+            border-radius: 6px;
             outline: none;
-            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
-        }
-
-        button {
-            background-color: var(--secondary-color);
-            color: white;
-            border: none;
-            padding: 0.75rem 1.5rem;
-            font-size: 1rem;
-            font-weight: 500;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: var(--transition);
-            position: relative;
-            overflow: hidden;
-        }
-
-        button::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            background-color: rgba(255, 255, 255, 0.2);
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            transition: width 0.6s ease-out, height 0.6s ease-out;
-        }
-
-        button:hover::before {
-            width: 300px;
-            height: 300px;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: separate;
-            border-spacing: 0 10px;
-            margin-top: 1rem;
-        }
-
-        th, td {
-            padding: 1rem;
-            text-align: left;
-        }
-
-        th {
-            background-color: #f9fafb;
-            font-weight: 600;
-            color: var(--primary-color);
-            text-transform: uppercase;
-            font-size: 0.9rem;
-            letter-spacing: 1px;
-        }
-
-        tbody tr {
-            background-color: white;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-            transition: var(--transition);
-        }
-
-        tbody tr:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        .status {
-            padding: 0.25rem 0.75rem;
-            border-radius: 20px;
-            font-size: 0.875rem;
-            font-weight: 600;
-            display: inline-block;
-        }
-
-        .status-confirmed {
-            background-color: #d1fae5;
-            color: #065f46;
-        }
-
-        .status-pending {
-            background-color: #fef3c7;
-            color: #92400e;
-        }
-
-        .tours-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .tour-card {
-            background-color: var(--card-bg);
-            border-radius: 15px;
-            padding: 1.5rem;
-            box-shadow: var(--card-shadow);
-            transition: var(--transition);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .tour-card::before {
-            content: '';
-            position: absolute;
-            top: -100%;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to bottom right, var(--secondary-color), var(--accent-color));
-            opacity: 0.1;
-            transition: var(--transition);
-        }
-
-        .tour-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .tour-card:hover::before {
-            top: 0;
-        }
-
-        .loyalty-info {
-            background-color: #e0f2fe;
-            border-radius: 15px;
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .loyalty-info::after {
-            content: '🏆';
-            position: absolute;
-            top: -20px;
-            right: -20px;
-            font-size: 100px;
-            opacity: 0.1;
-            transform: rotate(15deg);
-        }
-
-        .progress-bar {
-            background-color: #e5e7eb;
-            border-radius: 9999px;
-            height: 10px;
-            overflow: hidden;
-            margin: 1rem 0;
-        }
-
-        .progress-bar-fill {
-            background-color: var(--secondary-color);
-            height: 100%;
-            width: 0;
-            transition: width 1.5s ease-in-out;
-        }
-
-        footer {
-            background-color: var(--primary-color);
-            color: white;
-            text-align: center;
-            padding: 1.5rem 0;
-            margin-top: 2rem;
+            box-shadow: inset 0 1px 0 rgba(208,215,222,0.2);
         }
 
         @media (max-width: 768px) {
-            .profile-grid {
+            .profile-layout {
                 grid-template-columns: 1fr;
             }
-
-            .profile-sidebar {
-                position: static;
-                margin-bottom: 2rem;
-            }
-
-            .profile-picture {
-                width: 150px;
-                height: 150px;
-            }
-
-            h2 {
-                font-size: 2rem;
-            }
-        }
-
-        /* New styles for enhanced design */
-        .card {
-            background-color: var(--card-bg);
-            border-radius: 15px;
-            padding: 1.5rem;
-            box-shadow: var(--card-shadow);
-            transition: var(--transition);
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 1rem;
-            margin-bottom: 2rem;
-        }
-
-        .stat-card {
-            text-align: center;
-            padding: 1rem;
-        }
-
-        .stat-value {
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--primary-color);
-        }
-
-        .stat-label {
-            font-size: 0.9rem;
-            color: #7f8c8d;
-        }
-
-        .activity-feed {
-            max-height: 300px;
-            overflow-y: auto;
-            padding-right:  1rem;
-        }
-
-        .activity-item {
-            display: flex;
-            align-items: center;
-            margin-bottom: 1rem;
-            padding-bottom: 1rem;
-            border-bottom: 1px solid #e5e7eb;
-        }
-
-        .activity-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background-color: var(--secondary-color);
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 1rem;
-            flex-shrink: 0;
-        }
-
-        .activity-content {
-            flex-grow: 1;
-        }
-
-        .activity-title {
-            font-weight: 600;
-            margin-bottom: 0.25rem;
-        }
-
-        .activity-date {
-            font-size: 0.8rem;
-            color: #7f8c8d;
-        }
-
-        /* Scrollbar styles */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: #f1f1f1;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: #888;
-            border-radius: 4px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: #555;
         }
     </style>
 </head>
 <body>
-    <header id="main-header">
-        <div class="container">
-            <nav>
-                <ul>
-                    <li><a href="#" class="nav-link">Inicio</a></li>
-                    <li><a href="#" class="nav-link">Reservaciones</a></li>
-                    <li><a href="#" class="nav-link">Contacto</a></li>
-                </ul>
+    <header>
+        <div class="container header-content">
+            <h1>Mi Perfil</h1>
+            <nav class="profile-nav">
+                <a href="#reservations" class="nav-link active" data-target="reservations">Reservaciones</a>
+                <a href="#orders" class="nav-link" data-target="orders">Pedidos</a>
+                <a href="#adventures" class="nav-link" data-target="adventures">Aventuras</a>
             </nav>
         </div>
     </header>
 
     <main class="container">
-        <div class="profile-grid">
+        <div class="profile-layout">
             <aside class="profile-sidebar">
-                <div class="profile-picture">
-                    <img src="https://yvqvxwjvxqvwxqvwxqvw.public.blob.vercel-storage.com/profile-placeholder-Rl5Rl5Rl5Rl5Rl5Rl5Rl.png" alt="Foto de perfil" id="profile-image">
-                </div>
-                <h1 class="profile-name">Juan Pérez</h1>
-                <p class="profile-member-since">Miembro desde 2021</p>
-                <div class="tab-buttons">
-                    <button class="tab-button active" data-tab="dashboard">Dashboard</button>
-                    <button class="tab-button" data-tab="personal-info">Información Personal</button>
-                    <button class="tab-button" data-tab="reservations">Mis Reservaciones</button>
-                    <button class="tab-button" data-tab="restaurant">Reservas de Restaurante</button>
-                    <button class="tab-button" data-tab="tours">Tours Reservados</button>
-                    <button class="tab-button" data-tab="loyalty">Programa de Lealtad</button>
-                </div>
-            </aside>
-            <section class="profile-content">
-                <div id="dashboard" class="tab-content active">
-                    <h2>Dashboard</h2>
-                    <div class="stats-grid">
-                        <div class="card stat-card">
-                            <div class="stat-value">5</div>
-                            <div class="stat-label">Reservas Totales</div>
-                        </div>
-                        <div class="card stat-card">
-                            <div class="stat-value">3</div>
-                            <div class="stat-label">Noches Reservadas</div>
-                        </div>
-                        <div class="card stat-card">
-                            <div class="stat-value">5000</div>
-                            <div class="stat-label">Puntos de Lealtad</div>
-                        </div>
+                <img src="/api/placeholder/296/296" alt="Avatar" class="profile-avatar">
+                <div class="profile-info">
+                    <h1 id="nombre-completo"></h1>
+                    <div class="username" id="usuario"></div>
+                    <div class="profile-details">
+                        <p><i class="fas fa-phone"></i> <span id="celular"></span></p>
+                        <p><i class="fas fa-map-marker-alt"></i> <span id="direccion"></span></p>
+                        <p><i class="fas fa-envelope"></i> <span id="correo"></span></p>
                     </div>
-                    <div class="card">
-                        <h3>Actividad Reciente</h3>
-                        <div class="activity-feed">
-                            <div class="activity-item">
-                                <div class="activity-icon">🏨</div>
-                                <div class="activity-content">
-                                    <div class="activity-title">Reserva confirmada</div>
-                                    <div class="activity-date">Hace 2 días</div>
-                                </div>
-                            </div>
-                            <div class="activity-item">
-                                <div class="activity-icon">🍽️</div>
-                                <div class="activity-content">
-                                    <div class="activity-title">Reserva de restaurante</div>
-                                    <div class="activity-date">Hace 1 semana</div>
-                                </div>
-                            </div>
-                            <div class="activity-item">
-                                <div class="activity-icon">🏆</div>
-                                <div class="activity-content">
-                                    <div class="activity-title">Nivel de lealtad aumentado</div>
-                                    <div class="activity-date">Hace 2 semanas</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <button id="editarPerfil" class="btn btn-primary">Editar Perfil</button>
                 </div>
-                <div id="personal-info" class="tab-content">
-                    <h2>Información Personal</h2>
-                    <form id="personal-info-form">
-                        <div class="form-grid">
-                            <div class="form-group">
-                                <label for="name">Nombre</label>
-                                <input type="text" id="name" name="name" value="Juan Pérez">
-                            </div>
-                            <div class="form-group">
-                                <label for="email">Email</label>
-                                <input type="email" id="email" name="email" value="juan.perez@example.com">
-                            </div>
-                            <div class="form-group">
-                                <label for="phone">Teléfono</label>
-                                <input type="tel" id="phone" name="phone" value="+1 234 567 8900">
-                            </div>
-                            <div class="form-group">
-                                <label for="address">Dirección</label>
-                                <input type="text" id="address" name="address" value="123 Calle Principal, Ciudad">
-                            </div>
+                <div id="editForm" class="edit-form hidden">
+                    <h3>Editar Perfil</h3>
+                    <form id="profileForm">
+                        <div class="form-group">
+                            <label for="editNombre">Nombre:</label>
+                            <input type="text" id="editNombre" name="nombre" required>
                         </div>
-                        <button type="submit">Actualizar Información</button>
+                        <div class="form-group">
+                            <label for="editApellidos">Apellidos:</label>
+                            <input type="text" id="editApellidos" name="apellidos" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editCelular">Celular:</label>
+                            <input type="tel" id="editCelular" name="celular" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editDireccion">Dirección:</label>
+                            <input type="text" id="editDireccion" name="direccion" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editUsuario">Usuario:</label>
+                            <input type="text" id="editUsuario" name="usuario" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editCorreo">Correo:</label>
+                            <input type="email" id="editCorreo" name="correo" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Guardar Cambios</button>
                     </form>
                 </div>
-                <div id="reservations" class="tab-content">
-                    <h2>Mis Reservaciones</h2>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Fecha de Llegada</th>
-                                <th>Fecha de Salida</th>
-                                <th>Tipo de Habitación</th>
-                                <th>Estado</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>2023-07-15</td>
-                                <td>2023-07-20</td>
-                                <td>Suite Deluxe</td>
-                                <td><span class="status status-confirmed">Confirmada</span></td>
-                            </tr>
-                            <tr>
-                                <td>2023-09-01</td>
-                                <td>2023-09-05</td>
-                                <td>Habitación Estándar</td>
-                                <td><span class="status status-pending">Pendiente</span></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div id="restaurant" class="tab-content">
-                    <h2>Reservas de Restaurante</h2>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Fecha</th>
-                                <th>Hora</th>
-                                <th>Restaurante</th>
-                                <th>Personas</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>2023-07-16</td>
-                                <td>20:00</td>
-                                <td>La Terraza</td>
-                                <td>2</td>
-                            </tr>
-                            <tr>
-                                <td>2023-07-18</td>
-                                <td>19:30</td>
-                                <td>El Jardín</td>
-                                <td>4</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div id="tours" class="tab-content">
-                    <h2>Tours Reservados</h2>
-                    <div class="tours-grid">
-                        <div class="tour-card">
-                            <h3>Tour por la Ciudad</h3>
-                            <p>Fecha: 2023-07-17</p>
-                            <p>Duración: 3 horas</p>
-                            <p>Personas: 2</p>
-                        </div>
-                        <div class="tour-card">
-                            <h3>Excursión a la Playa</h3>
-                            <p>Fecha: 2023-07-19</p>
-                            <p>Duración: 6 horas</p>
-                            <p>Personas: 2</p>
-                        </div>
-                    </div>
-                </div>
-                <div id="loyalty" class="tab-content">
-                    <h2>Programa de Lealtad</h2>
-                    <div class="loyalty-info">
-                        <h3>Nivel Actual: Oro</h3>
-                        <p>Puntos acumulados: 5,000</p>
-                        <p>Próximo nivel: Platino (7,500 puntos)</p>
-                    </div>
-                    <h3>Progreso hacia el siguiente nivel</h3>
-                    <div class="progress-bar">
-                        <div class="progress-bar-fill" id="loyalty-progress"></div>
-                    </div>
-                    <h3>Historial de Puntos</h3>
-                    <canvas id="pointsChart" width="400" height="200"></canvas>
-                </div>
-            </section>
+            </aside>
+
+            <div class="tab-content">
+                <section id="reservations" class="card">
+                    <h3>Mis Reservaciones</h3>
+                    <div id="reservaciones"></div>
+                </section>
+
+                <section id="orders" class="card hidden">
+                    <h3>Mis Pedidos de Comida</h3>
+                    <div id="pedidos"></div>
+                </section>
+
+                <section id="adventures" class="card hidden">
+                    <h3>Mis Aventuras</h3>
+                    <div id="aventuras"></div>
+                </section>
+            </div>
         </div>
     </main>
 
-    <footer>
-        <div class="container">
-            <p>&copy; 2023 Hotel Paraíso. Todos los derechos reservados.</p>
-        </div>
-    </footer>
-
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const tabButtons = document.querySelectorAll('.tab-button');
-            const tabContents = document.querySelectorAll('.tab-content');
-            const header = document.getElementById('main-header');
-            const profileImage = document.getElementById('profile-image');
+          // Datos de ejemplo (reemplazar con datos reales)
+          let perfil = {
+            nombre: "Juan",
+            apellidos: "Pérez González",
+            celular: "+1234567890",
+            direccion: "Ciudad, País",
+            usuario: "juanpg",
+            correo: "juan@example.com"
+        };
 
-            function switchTab(tabId) {
-                tabButtons.forEach(btn => btn.classList.remove('active'));
-                tabContents.forEach(content => {
-                    content.classList.remove('active');
-                    content.style.display = 'none';
-                });
+        const reservaciones = [
+            { id: 1, fecha: "2024-05-15", habitacion: "Suite Deluxe", noches: 3 },
+            { id: 2, fecha: "2024-06-20", habitacion: "Habitación Doble", noches: 2 }
+        ];
 
-                const activeButton = document.querySelector(`.tab-button[data-tab="${tabId}"]`);
-                const activeContent = document.getElementById(tabId);
+        const pedidos = [
+            { id: 1, fecha: "2024-05-16", plato: "Pasta Alfredo", precio: 15.99 },
+            { id: 2, fecha: "2024-05-17", plato: "Ensalada César", precio: 10.50 }
+        ];
 
-                activeButton.classList.add('active');
-                activeContent.style.display = 'block';
-                setTimeout(() => {
-                    activeContent.classList.add('active');
-                }, 50);
+        const aventuras = [
+            { id: 1, fecha: "2024-05-18", nombre: "Tour por la ciudad", estado: "Completado" },
+            { id: 2, fecha: "2024-06-21", nombre: "Excursión a la montaña", estado: "Reservado" }
+        ];
 
-                if (tabId === 'loyalty') {
-                    animateProgressBar();
-                    initChart();
-                }
+        // Función para llenar la información del perfil
+        function llenarPerfil() {
+            document.getElementById('nombre-completo').textContent = `${perfil.nombre} ${perfil.apellidos}`;
+            document.getElementById('usuario').textContent = `@${perfil.usuario}`;
+            document.getElementById('celular').textContent = perfil.celular;
+            document.getElementById('direccion').textContent = perfil.direccion;
+            document.getElementById('correo').textContent = perfil.correo;
+        }
+
+        // Función para crear elementos de card
+        function crearElementoCard(item, tipo) {
+            const elemento = document.createElement('div');
+            elemento.classList.add('card-item');
+            let contenido = '';
+
+            switch (tipo) {
+                case 'reservacion':
+                    contenido = `<strong>Reserva #${item.id}:</strong> ${item.habitacion} - ${item.fecha} (${item.noches} noches)`;
+                    break;
+                case 'pedido':
+                    contenido = `<strong>Pedido #${item.id}:</strong> ${item.plato} - $${item.precio.toFixed(2)} (${item.fecha})`;
+                    break;
+                case 'aventura':
+                    contenido = `<strong>Aventura #${item.id}:</strong> ${item.nombre} - ${item.fecha} (${item.estado})`;
+                    break;
             }
 
-            tabButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    const tabId = button.getAttribute('data-tab');
-                    switchTab(tabId);
+            elemento.innerHTML = contenido;
+            return elemento;
+        }
+
+        // Función para llenar las secciones de cards
+        function llenarCards() {
+            const seccionReservaciones = document.getElementById('reservaciones');
+            const seccionPedidos = document.getElementById('pedidos');
+            const seccionAventuras = document.getElementById('aventuras');
+
+            seccionReservaciones.innerHTML = '';
+            seccionPedidos.innerHTML = '';
+            seccionAventuras.innerHTML = '';
+
+            reservaciones.forEach(res => seccionReservaciones.appendChild(crearElementoCard(res, 'reservacion')));
+            pedidos.forEach(ped => seccionPedidos.appendChild(crearElementoCard(ped, 'pedido')));
+            aventuras.forEach(adv => seccionAventuras.appendChild(crearElementoCard(adv, 'aventura')));
+        }
+
+        // Función para cambiar entre pestañas
+        function cambiarPestana(targetId) {
+            document.querySelectorAll('.card').forEach(section => {
+                section.classList.add('hidden');
+            });
+            document.getElementById(targetId).classList.remove('hidden');
+
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+            });
+            document.querySelector(`.nav-link[data-target="${targetId}"]`).classList.add('active');
+        }
+
+        // Función para mostrar el formulario de edición
+        function mostrarFormularioEdicion() {
+            const form = document.getElementById('editForm');
+            form.classList.remove('hidden');
+            
+            // Rellenar el formulario con los datos actuales
+            document.getElementById('editNombre').value = perfil.nombre;
+            document.getElementById('editApellidos').value = perfil.apellidos;
+            document.getElementById('editCelular').value = perfil.celular;
+            document.getElementById('editDireccion').value = perfil.direccion;
+            document.getElementById('editUsuario').value = perfil.usuario;
+            document.getElementById('editCorreo').value = perfil.correo;
+        }
+
+        // Función para ocultar el formulario de edición
+        function ocultarFormularioEdicion() {
+            const form = document.getElementById('editForm');
+            form.classList.add('hidden');
+        }
+
+        // Función para guardar los cambios del perfil
+        function guardarCambiosPerfil(event) {
+            event.preventDefault();
+            
+            perfil = {
+                nombre: document.getElementById('editNombre').value,
+                apellidos: document.getElementById('editApellidos').value,
+                celular: document.getElementById('editCelular').value,
+                direccion: document.getElementById('editDireccion').value,
+                usuario: document.getElementById('editUsuario').value,
+                correo: document.getElementById('editCorreo').value
+            };
+
+            llenarPerfil();
+            ocultarFormularioEdicion();
+
+            // Aquí se podría agregar código para enviar los datos actualizados al servidor
+            console.log("Perfil actualizado:", perfil);
+        }
+
+        // Inicializar la página
+        document.addEventListener('DOMContentLoaded', () => {
+            llenarPerfil();
+            llenarCards();
+
+            // Agregar event listeners para los enlaces de navegación
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const targetId = e.target.getAttribute('data-target');
+                    cambiarPestana(targetId);
                 });
             });
 
-            function animateProgressBar() {
-                const progressBar = document.getElementById('loyalty-progress');
-                progressBar.style.width = '66%';
-            }
+            // Agregar event listener para el botón de editar perfil
+            document.getElementById('editarPerfil').addEventListener('click', mostrarFormularioEdicion);
 
-            function initChart() {
-                const ctx = document.getElementById('pointsChart').getContext('2d');
-                new Chart(ctx, {
-                    type: 'line',
-                    data: {
-                        labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun'],
-                        datasets: [{
-                            label: 'Puntos Ganados',
-                            data: [500, 1000, 1500, 2500, 3500, 5000],
-                            borderColor: '#3498db',
-                            backgroundColor: 'rgba(52, 152, 219, 0.1)',
-                            tension: 0.4,
-                            fill: true
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        scales: {
-                            y: {
-                                beginAtZero: true
-                            }
-                        },
-                        animation: {
-                            duration: 2000,
-                            easing: 'easeOutQuart'
-                        },
-                        plugins: {
-                            legend: {
-                                display: false
-                            }
-                        }
-                    }
-                });
-            }
-
-            document.getElementById('personal-info-form').addEventListener('submit', function(e) {
-                e.preventDefault();
-                alert('Información actualizada correctamente');
-            });
-
-            profileImage.addEventListener('click', () => {
-                alert('Funcionalidad para cambiar la foto de perfil');
-            });
-
-            // Parallax effect for profile picture
-            window.addEventListener('scroll', () => {
-                const scrollPosition = window.scrollY;
-                profileImage.style.transform = `translateY(${scrollPosition * 0.1}px)`;
-            });
-
-            // Header scroll effect
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 50) {
-                    header.classList.add('scrolled');
-                } else {
-                    header.classList.remove('scrolled');
-                }
-            });
-
-            // Initialize with the dashboard tab
-            switchTab('dashboard');
-
-            // Add hover effect to table rows
-            const tableRows = document.querySelectorAll('tbody tr');
-            tableRows.forEach(row => {
-                row.addEventListener('mouseenter', () => {
-                    row.style.transform = 'scale(1.02)';
-                });
-                row.addEventListener('mouseleave', () => {
-                    row.style.transform = 'scale(1)';
-                });
-            });
-
-            // Add ripple effect to buttons
-            const buttons = document.querySelectorAll('button');
-            buttons.forEach(button => {
-                button.addEventListener('click', function(e) {
-                    let ripple = document.createElement('span');
-                    ripple.classList.add('ripple');
-                    this.appendChild(ripple);
-                    let x = e.clientX - e.target.offsetLeft;
-                    let y = e.clientY - e.target.offsetTop;
-                    ripple.style.left = `${x}px`;
-                    ripple.style.top = `${y}px`;
-                    setTimeout(() => {
-                        ripple.remove();
-                    }, 600);
-                });
-            });
-
-            // Smooth scroll to top when switching tabs
-            tabButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    window.scrollTo({
-                        top: 0,
-                        behavior: 'smooth'
-                    });
-                });
-            });
-
-            // Animate stats on dashboard
-            function animateStats() {
-                const stats = document.querySelectorAll('.stat-value');
-                stats.forEach(stat => {
-                    const finalValue = parseInt(stat.textContent);
-                    let currentValue = 0;
-                    const duration = 2000; // 2 segundos
-                    const interval = 50; // Actualizar cada 50ms
-                    const steps = duration / interval;
-                    const increment = finalValue / steps;
-
-                    const timer = setInterval(() => { // Corregido a setInterval
-                        currentValue += increment;
-                        if (currentValue >= finalValue) {
-                            clearInterval(timer);
-                            stat.textContent = finalValue;
-                        } else {
-                            stat.textContent = Math.round(currentValue);
-                        }
-                    }, interval);
-                });
-            }
-
-            // Call animateStats when dashboard is shown
-            document.querySelector('.tab-button[data-tab="dashboard"]').addEventListener('click', animateStats);
-
-            // Initial animation for dashboard stats
-            animateStats();
+            // Agregar event listener para el formulario de edición
+            document.getElementById('profileForm').addEventListener('submit', guardarCambiosPerfil);
         });
     </script>
+
 </body>
 </html>
